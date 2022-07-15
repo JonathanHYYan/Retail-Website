@@ -1,6 +1,8 @@
 import { ThemeProvider } from "styled-components";
 import Landing from "./Components/LandingPage/Landing";
-import { Route, Switch } from "react-router-dom";
+import Nav from "./Components/Nav/Nav";
+import Footer from "./Components/Footer/Footer";
+import ProductPage from "./Components/ProductPage/ProductPage";
 
 const theme = {
   womens: {
@@ -15,9 +17,12 @@ const theme = {
 
 function App() {
   return (
-      <ThemeProvider theme={theme}>
-          <Landing></Landing>
-      </ThemeProvider>
+    <ThemeProvider theme={theme}>
+      <Nav />
+      {/* <Landing/> */}
+      <ProductPage />
+      <Footer />
+    </ThemeProvider>
   );
 }
 
