@@ -9,12 +9,11 @@ import {
 } from "./NavStyles";
 import BlackLogo from "../../assets/BlackLogo.jpeg";
 import { BsSearch, BsCart3 } from "react-icons/bs";
-import { BrowserRouter } from "react-router-dom";
 
 const Nav = () => {
 
   return (
-    <BrowserRouter>
+    <>
       <NavBar>
         <Logo src={BlackLogo} />
         <NavLinks>
@@ -53,7 +52,7 @@ const Nav = () => {
         <TLink to="">Tag E</TLink>
         <TLink to="">Tag F</TLink>
       </TagList>
-    </BrowserRouter>
+    </>
   );
 };
 
