@@ -16,13 +16,47 @@ import Suppliers from "./Supplier";
 import { BsFillStarFill, BsStarHalf } from "react-icons/bs";
 import Review from "./Review";
 import ProductDetails from "./ProductDetails";
+import { useState, useEffect } from "react";
+import { Demo } from "../../assets/DemoStock";
+import ProductCard from "../UI/Card";
 
 const ProductPage = () => {
+  const [suggested, setSuggested] = useState([]);
+
+  useEffect(() => {
+    let suggestArr = [];
+
+    if (Demo.images) {
+      Demo.images.map((image) => {
+        if (image.state === "suggest") {
+          return suggestArr.push(image);
+        }
+      });
+    }
+    setSuggested(suggestArr);
+  }, [Demo.images]);
+
   const addToCart = (
     <Buy>
       <Btn>Add to Cart</Btn>
     </Buy>
   );
+
+  const generateCard = (product) => {
+    return (
+      <ProductCard
+        src={product.src}
+        caption={product.caption}
+        name={product.name}
+        type={product.type}
+        price={product.price}
+      />
+    );
+  };
+
+  const suggestedStock = suggested.map((item) => {
+    return generateCard(item);
+  });
   return (
     <Product>
       <BreadCrumb>
@@ -56,11 +90,9 @@ const ProductPage = () => {
           </ProductInfo>
           <Suppliers />
         </ProductRow>
+        <ProductRow>{addToCart}</ProductRow>
         <ProductRow>
-          {addToCart}
-        </ProductRow>
-        <ProductRow>
-          <ProductDetails/>
+          <ProductDetails />
         </ProductRow>
         <ProductRow>
           <Reviews>
@@ -86,6 +118,10 @@ const ProductPage = () => {
             <Review />
           </Reviews>
         </ProductRow>
+      </ProductWindow>
+      <ProductWindow>
+        <h1>You Might Also Like</h1>
+        <div style={{ display: "flex" }}>{suggestedStock}</div>
       </ProductWindow>
     </Product>
   );

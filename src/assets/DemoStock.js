@@ -9,6 +9,7 @@ export const Demo = {
           state: "popular",
           caption: "shoe1",
           gender: "male",
+          price: 120,
       },
       {
           src: shoe1,
@@ -17,6 +18,7 @@ export const Demo = {
           state: "new",
           caption: "shoe1",
           gender: "male",
+          price: 120,
       },
       {
           src: shoe1,
@@ -25,6 +27,7 @@ export const Demo = {
           state: "new",
           caption: "shoe1",
           gender: "male",
+          price: 120,
       },
       {
           src: shoe1,
@@ -33,6 +36,7 @@ export const Demo = {
           state: "popular",
           caption: "shoe1",
           gender: "male",
+          price: 120,
       },
       {
           src: shoe1,
@@ -41,6 +45,7 @@ export const Demo = {
           state: "popular",
           caption: "shoe1",
           gender: "male",
+          price: 120,
       },
       {
           src: shoe1,
@@ -49,6 +54,7 @@ export const Demo = {
           state: "popular",
           caption: "shoe1",
           gender: "male",
+          price: 120,
       },
       {
           src: shoe1,
@@ -57,6 +63,7 @@ export const Demo = {
           state: "popular",
           caption: "shoe1",
           gender: "male",
+          price: 120,
       },
       {
           src: shoe1,
@@ -65,6 +72,7 @@ export const Demo = {
           state: "popular",
           caption: "shoe1",
           gender: "male",
+          price: 120,
       },
       {
           src: shoe1,
@@ -73,6 +81,43 @@ export const Demo = {
           state: "popular",
           caption: "shoe1",
           gender: "male",
+          price: 120,
+      },
+      {
+          src: shoe1,
+          name: "Nike Air Zoom Pegasus 39",
+          type: "Men's Road Running Shoes",
+          state: "suggest",
+          caption: "shoe1",
+          gender: "male",
+          price: 120,
+      },
+      {
+          src: shoe1,
+          name: "Nike Air Zoom Pegasus 39",
+          type: "Men's Road Running Shoes",
+          state: "suggest",
+          caption: "shoe1",
+          gender: "male",
+          price: 120,
+      },
+      {
+          src: shoe1,
+          name: "Nike Air Zoom Pegasus 39",
+          type: "Men's Road Running Shoes",
+          state: "suggest",
+          caption: "shoe1",
+          gender: "male",
+          price: 120,
+      },
+      {
+          src: shoe1,
+          name: "Nike Air Zoom Pegasus 39",
+          type: "Men's Road Running Shoes",
+          state: "suggest",
+          caption: "shoe1",
+          gender: "male",
+          price: 120,
       },
   ])
 };

@@ -1,15 +1,11 @@
 import {
-  Card,
   Category,
   CatHeader,
-  Img,
-  Name,
-  Price,
   ProductGallery,
-  Type,
 } from "./ProductStyling";
 import { Demo } from "../../assets/DemoStock";
 import { useEffect, useState } from "react";
+import ProductCard from "../UI/Card";
 
 const ProductSelection = () => {
   const [popStock, setPopStock] = useState([]);
@@ -38,12 +34,13 @@ const ProductSelection = () => {
 
   const generateCard = (product) => {
     return (
-      <Card>
-        <Img src={product.src} alt={product.caption}></Img>
-        <Name>{product.name}</Name>
-        <Type>{product.type}</Type>
-        <Price>£120.00</Price>
-      </Card>
+      <ProductCard 
+      src={product.src}
+      caption={product.caption}
+      name={product.name}
+      type={product.type}
+      price={product.price}
+      />
     );
   };
 
