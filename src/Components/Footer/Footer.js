@@ -16,26 +16,26 @@ import {
 import WhiteLogo from "../../assets/WhiteLogo.png";
 import { BsFacebook, BsInstagram } from "react-icons/bs";
 import { FiTwitter } from "react-icons/fi";
-import {BiCopyright} from "react-icons/bi";
+import { BiCopyright } from "react-icons/bi";
 
 const Footer = () => {
   return (
     <>
       <Foot>
         <SignUp>
-        <H2>
+          <H2>
             <Logo src={WhiteLogo} alt="Logo"></Logo>
             <h2>ennetts Sportswear</h2>
           </H2>
-            <p>Stay in the loop for the newest fit</p>
+          <p>Stay in the loop for the newest fit</p>
           <Form>
             <Input placeholder="What's your email?"></Input>
             <Btn>Sign Up</Btn>
           </Form>
           <Socials>
-            <BsFacebook />
-            <BsInstagram />
-            <FiTwitter />
+            <BsFacebook style={{ cursor: "pointer" }} />
+            <BsInstagram style={{ cursor: "pointer" }} />
+            <FiTwitter style={{ cursor: "pointer" }} />
           </Socials>
         </SignUp>
         <CService>
@@ -74,12 +74,12 @@ const Footer = () => {
               </ul>
             </Brands>
           </Misc>
-
         </CService>
       </Foot>
       <Legal>
         <Policy>
-        <BiCopyright/><p> 2022</p>
+          <BiCopyright />
+          <p> 2022</p>
           <p>|</p>
           <p>Privacy Policy</p>
           <p>|</p>

@@ -1,12 +1,8 @@
+import { NLink } from "../Nav/NavStyles";
 import {
-  GToggle,
   HeroBG,
   HeroText,
   Shop,
-  Switch,
-  Input,
-  Slider,
-  CheckBox,
 } from "./HeroStyles";
 
 const Hero = () => {
@@ -15,7 +11,9 @@ const Hero = () => {
       <HeroBG></HeroBG>
       <HeroText>
         <h1>Nike React Vision</h1>
-        <Shop>Show Now</Shop>
+        <NLink to="/productpage">
+          <Shop>Shop Now</Shop>
+        </NLink>
       </HeroText>
     </>
   );

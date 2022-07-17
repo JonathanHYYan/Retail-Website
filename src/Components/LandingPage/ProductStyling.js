@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const ProductGallery = styled.section`
   width: 80%;
   margin: 3em auto;
-  font-family: Helvetica;
+  font-family: ${(props) => props.theme.mens.fontFamily};
 `;
 
 export const CatHeader = styled.h2`

@@ -1,0 +1,36 @@
+{
+    "Lifestyle": {
+        "Unnamed: 0": {
+            "0": 0,
+            "1": 1
+        },
+        "Name": {
+            "0": "SALENikeWomens React Vision",
+            "1": "SALENikeWomens React Vision"
+        },
+        "Price": {
+            "0": "\u00a375.00",
+            "1": "\u00a375.00"
+        },
+        "Sale": {
+            "0": true,
+            "1": true
+        },
+        "Sizes": {
+            "0": " 4 5 6 7",
+            "1": " 4 5 6 7"
+        },
+        "Text1": {
+            "0": "COLOUR: GREY",
+            "1": "COLOUR: PURPLE"
+        },
+        "Code": {
+            "0": 21644010,
+            "1": 21661643
+        },
+        "Retailer": {
+            "0": "Lifestyle Sports",
+            "1": "Lifestyle Sports"
+        }
+    }
+}

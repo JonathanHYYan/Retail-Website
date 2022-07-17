@@ -1,26 +1,18 @@
-import { Size, SizeBox } from "./SizesStyling";
+import { Size, SizeBox, Tile } from "./SizesStyling";
 
 const Sizes = () => {
-  return(
+  const dummySizes = [2.5, 3,3.5,4,4.6,5,5.5,6,6.5,7,7.5,8,8.5,9,9.5];
+
+  const sizes = dummySizes.map(size => {
+    return <Size>UK {size}</Size>
+  }
+  );
+  return (
     <SizeBox>
       <h1>Sizes</h1>
-      <Size>UK 2.5</Size>
-      <Size>UK 3</Size>
-      <Size>UK 3.5</Size>
-      <Size>UK 4</Size>
-      <Size>UK 4.5</Size>
-      <Size>UK 5</Size>
-      <Size>UK 5.5</Size>
-      <Size>UK 6</Size>
-      <Size>UK 6.5</Size>
-      <Size>UK 7</Size>
-      <Size>UK 7.5</Size>
-      <Size>UK 8</Size>
-      <Size>UK 8.5</Size>
-      <Size>UK 9</Size>
-      <Size>UK 9.5</Size>
+      {sizes}
     </SizeBox>
-  )
+  );
 };
 
 export default Sizes;

@@ -1,0 +1,36 @@
+{
+    "Nike": {
+        "Unnamed: 0": {
+            "0": 0,
+            "1": 1
+        },
+        "Text": {
+            "0": "Nike React Vision",
+            "1": "Nike React Vision JDS"
+        },
+        "Price": {
+            "0": "\u00a3119.95",
+            "1": "\u00a3119.95"
+        },
+        "Sizes": {
+            "0": " 2.5  3  3.5  4  4.5  5  5.5  6  6.5  7  7.5",
+            "1": " 2.5  3  3.5  4  4.5  5  5.5  6  6.5  7  7.5  8  8.5  9  9.5"
+        },
+        "Colour": {
+            "0": " White/Black",
+            "1": " Sail/Pure Platinum/White/Metallic Silver"
+        },
+        "Sale": {
+            "0": false,
+            "1": false
+        },
+        "Code": {
+            "0": " DV3453-100",
+            "1": " DR7858-100"
+        },
+        "Retailer": {
+            "0": "Nike",
+            "1": "Nike"
+        }
+    }
+}

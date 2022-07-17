@@ -1,6 +1,20 @@
 side scroll feature for tag if i have time
 https://codepen.io/thenutz/pen/VwYeYEE
 
-add a womens theme, toggle switch kings - queens. different type of crowns
-
 add accepted payment methods with logos like under armor company
+
+new carousel because heili says it sucks
+
+sizes filters which shop is available
+
+details into a tabbed div like under armor details
+3 tabs DMX / Details / fit and care
+
+
+sizes when clicked/selected should be accented
+
+Search bar functionality
+
+laced product size buttons
+
+order from looks shit figure out different style

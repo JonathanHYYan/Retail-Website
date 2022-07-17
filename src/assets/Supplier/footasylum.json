@@ -1,0 +1,49 @@
+{
+    "footasylum": {
+        "Unnamed: 0": {
+            "0": 0,
+            "1": 1,
+            "2": 2
+        },
+        "Text": {
+            "0": "Nike",
+            "1": "Nike",
+            "2": "Nike"
+        },
+        "Text1": {
+            "0": "Womens React Vision Trainer",
+            "1": "Womens React Vision Trainer",
+            "2": "Womens React Vision Trainer"
+        },
+        "Text2": {
+            "0": "Sail / Pink / Seafoam",
+            "1": "Wolf Grey / Black / Pink Prime / Steel",
+            "2": "Pale Ivory / Black / Volt"
+        },
+        "Price": {
+            "0": "\u00a3114.99",
+            "1": "\u00a3119.99",
+            "2": "\u00a389.99"
+        },
+        "Sale": {
+            "0": false,
+            "1": false,
+            "2": true
+        },
+        "Code": {
+            "0": 4062896,
+            "1": 4066328,
+            "2": 4062894
+        },
+        "Sizes": {
+            "0": "3 3.5 4",
+            "1": "3",
+            "2": "3 4"
+        },
+        "Retailer": {
+            "0": "footasylum",
+            "1": "footasylum",
+            "2": "footasylum"
+        }
+    }
+}

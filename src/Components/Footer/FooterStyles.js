@@ -104,6 +104,12 @@ export const Brands = styled.div`
     font-size: 0.8em;
     list-style: none;
     padding: 0.5rem 0;
+    opacity: 0.7;
+    cursor:pointer;
+
+    :hover{
+      opacity:1;
+    }
   }
 `;
 
@@ -121,6 +127,7 @@ display:flex;
 align-items: center;
 padding: 0 5em;
 font-size: 0.7em;
+font-family: ${(props) => props.theme.mens.fontFamily};
 
 p{
   padding: 0 1rem;

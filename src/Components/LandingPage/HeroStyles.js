@@ -7,7 +7,7 @@ export const HeroBG = styled.section`
   background-size: cover;
   width: 100%;
   height: 60vw;
-  font-family: Helvetica;
+  font-family: ${(props) => props.theme.mens.fontFamily};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,14 +20,16 @@ export const HeroText = styled.div`
   text-align: center;
   font-size: 2em;
   font-weight: 2000;
-  font-family: Helvetica;
+  font-family: ${(props) => props.theme.mens.fontFamily};
   background-color: rgb(220,220,220, 0.45);
 `;
 
 export const Shop = styled.button`
   cursor: pointer;
   color: white;
-  background-color: black;
+  background-color: ${(props) => props.theme.mens.accent};
+  border:none;
+  border-radius: 5px;
   text-transform: uppercase;
   font-weight: bold;
   padding: 1rem 1.5rem;

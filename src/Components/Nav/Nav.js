@@ -1,5 +1,6 @@
 import {
   Logo,
+  LLink,
   NavBar,
   NavLinks,
   NLink,
@@ -9,13 +10,16 @@ import {
 } from "./NavStyles";
 import BlackLogo from "../../assets/BlackLogo.jpeg";
 import { BsSearch, BsCart3 } from "react-icons/bs";
+import ScrollToTop from "../UI/ScrollToTop";
 
 const Nav = () => {
-
   return (
     <>
       <NavBar>
-        <Logo src={BlackLogo} />
+        <LLink to="/">
+          <Logo src={BlackLogo} />
+        </LLink>
+        <ScrollToTop />
         <NavLinks>
           <NLink to="">New Releases</NLink>
           <NLink to="">Women</NLink>
@@ -26,9 +30,6 @@ const Nav = () => {
           <NLink to="">Log In</NLink>
           <NLink to="">
             <BsSearch style={{ fontSize: "1em", margin: "0 1rem 0 4rem" }} />
-          </NLink>
-          <NLink to="">
-            <BsCart3 style={{ fontSize: "1em", margin: "0 1rem" }} />
           </NLink>
         </NavLinks>
       </NavBar>

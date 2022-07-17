@@ -90,7 +90,6 @@ const ProductPage = () => {
           </ProductInfo>
           <Suppliers />
         </ProductRow>
-        <ProductRow>{addToCart}</ProductRow>
         <ProductRow>
           <ProductDetails />
         </ProductRow>

@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Product = styled.section`
   width: 80%;
   margin: 3rem auto;
-  font-family: helvetica;
+  font-family: ${(props) => props.theme.mens.fontFamily};
 `;
 
 export const BreadCrumb = styled.div`
@@ -68,12 +68,19 @@ export const CustomerReviews = styled.div`
   flex-direction: column;
   align-items: center;
   background-color: white;
-  cursor: pointer;
+  
+  h1 {
+    margin: 2rem 0 0 0;
+  }
+`;
+
+export const ReviewWindow = styled.section`
+  width: 100%;
 `;
 
 export const ReviewBoxes = styled.div`
   display: flex;
-  padding: 1.5rem 1rem;
+  padding: 1.5rem 0 1.5rem 1rem;
   width: 100%;
   border: 1px solid rgb(220, 220, 220, 0.9);
   border-radius: 5px;
@@ -111,6 +118,18 @@ export const CustomerRating = styled.span`
   }
 `;
 
+export const ReviewButton = styled.button`
+  background-color: ${(props) => props.theme.mens.accent};
+  border: none;
+  border-radius: 5px;
+  margin: 2rem 0;
+  float:right;
+  color:white;
+  width 7rem;
+  padding: 0.5rem;
+  cursor: pointer;
+`;
+
 export const Reccomends = styled.div`
   p {
     display: flex;
@@ -120,16 +139,18 @@ export const Reccomends = styled.div`
 `;
 
 export const Buy = styled.div`
-width:100%;
-display: flex;
-justify-content: center;
-align-items: center;
-margin: 1rem 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem 0;
 `;
 
 export const Btn = styled.button`
   cursor: pointer;
-  background-color:black;
+  background-color:${(props) => props.theme.mens.accent};
+  border:none;
+  border-radius: 5px;
   color: white;
   padding 1em;
   border-radius: 5px;
