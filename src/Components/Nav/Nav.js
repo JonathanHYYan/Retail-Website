@@ -9,10 +9,14 @@ import {
   TLinkSell,
 } from "./NavStyles";
 import BlackLogo from "../../assets/BlackLogo.jpeg";
-import { BsSearch, BsCart3 } from "react-icons/bs";
+import { BsSearch } from "react-icons/bs";
 import ScrollToTop from "../UI/ScrollToTop";
+import { useState, useRef } from "react";
 
 const Nav = () => {
+  const [isScrolling, setIsScrolling] = useState(false);
+
+
   return (
     <>
       <NavBar>
@@ -33,7 +37,7 @@ const Nav = () => {
           </NLink>
         </NavLinks>
       </NavBar>
-      <TagList>
+      <TagList >
         <TLinkSell to="">Sell Item</TLinkSell>
         <p>OR</p>
         <TLink to="">Air Jordan 1</TLink>

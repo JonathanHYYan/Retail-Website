@@ -33,6 +33,7 @@ export const Logo = styled.img`
 `;
 
 export const TagList = styled.div`
+  cursor: pointer;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -75,7 +76,7 @@ export const TLinkSell = styled(Link)`
   margin: 0 1rem;
   border: 2px solid transparent;
   box-shadow: 2px 1px 2px 0 grey;
-  background-color: ${props => props.theme.mens.accent};
+  background-color: ${(props) => props.theme.mens.accent};
   color: white;
   padding: 0.5rem 1rem;
   text-align: center;
@@ -84,12 +85,12 @@ export const TLinkSell = styled(Link)`
 
   :hover {
     transition: 0.15s;
-    border: 2px solid ${props => props.theme.mens.accent};
-    box-shadow:none;
+    border: 2px solid ${(props) => props.theme.mens.accent};
+    box-shadow: none;
   }
 
   :focus {
-    border: 2px solid ${props => props.theme.mens.accent};
-    box-shadow:none;
+    border: 2px solid ${(props) => props.theme.mens.accent};
+    box-shadow: none;
   }
 `;
