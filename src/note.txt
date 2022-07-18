@@ -3,13 +3,13 @@ https://codepen.io/thenutz/pen/VwYeYEE
 
 add accepted payment methods with logos like under armor company
 
-new carousel because heili says it sucks
-
 sizes filters which shop is available
-
-details into a tabbed div like under armor details
-3 tabs DMX / Details / fit and care
 
 Search bar functionality
 
-order form looks shit figure out different style
+order from looks shit figure out different style
+
+tabs title needs spacing on top adjusted details/specification etc
+
+
+figure out why product page mounts twice

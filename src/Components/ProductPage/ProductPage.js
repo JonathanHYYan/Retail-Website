@@ -1,7 +1,6 @@
 import Carousel from "./Carousel";
 import {
   BreadCrumb,
-  Buy,
   Product,
   ProductDetail,
   ProductRow,
@@ -9,23 +8,30 @@ import {
   ProductInfo,
   Rating,
   Reviews,
-  Btn,
+  Colors,
+  DetailsWindow,
+  DetailsTab,
+  Details,
+  TabsWindow,
 } from "./ProductPageStyling";
 import Sizes from "./Sizes";
 import Suppliers from "./Supplier";
 import { BsFillStarFill, BsStarHalf } from "react-icons/bs";
 import Review from "./Review";
-import ProductDetails from "./ProductDetails";
 import { useState, useEffect } from "react";
 import { Demo } from "../../assets/DemoStock";
 import ProductCard from "../UI/Card";
 
+const dummyColors = ["Wolf Grey", "Cool Grey", "Pink Prime", "Black"];
+
+const vendors = ["Lifestyle", "footasylum", "Nike"];
+
 const ProductPage = () => {
   const [suggested, setSuggested] = useState([]);
+  const [detailsTab, setDetailsTab] = useState("details");
 
   useEffect(() => {
     let suggestArr = [];
-
     if (Demo.images) {
       Demo.images.map((image) => {
         if (image.state === "suggest") {
@@ -33,14 +39,24 @@ const ProductPage = () => {
         }
       });
     }
+    getData();
     setSuggested(suggestArr);
-  }, [Demo.images]);
+  }, []);
 
-  const addToCart = (
-    <Buy>
-      <Btn>Add to Cart</Btn>
-    </Buy>
-  );
+  const getData = async () => {
+    const response = await fetch(
+      "http://0b69-45-132-108-35.eu.ngrok.io/footasylum"
+    );
+    console.log(await response.json());
+    const promises = vendors.map(vendor => {
+      const response = fetch(
+        `http://0b69-45-132-108-35.eu.ngrok.io/${vendor}`
+      );
+      return response;
+    })
+    const responses = await Promise.all(promises);
+    console.log(responses);
+  };
 
   const generateCard = (product) => {
     return (
@@ -54,9 +70,23 @@ const ProductPage = () => {
     );
   };
 
+  const renderColors = dummyColors.map((color, index) => {
+    if (index < dummyColors.length - 1) {
+      return (
+        <>
+          <p>{color}</p>
+          <p> / </p>
+        </>
+      );
+    } else {
+      return <p>{color}</p>;
+    }
+  });
+
   const suggestedStock = suggested.map((item) => {
     return generateCard(item);
   });
+
   return (
     <Product>
       <BreadCrumb>
@@ -79,19 +109,83 @@ const ProductPage = () => {
         </ProductRow>
         <ProductRow>
           <ProductInfo>
-            <p>
-              From the D/MS/X collection comes a story of surreal comfort.
-              Layered textures, intricate lines and vivid colours combine in a
-              design influenced by the exaggerated world of our dreams. The
-              React foam and an ultra-plush tongue provide dreamlike comfort.
-              Step into your dream—the Nike React Vision.
-            </p>
-            <p>Colors: Wolf Grey / Cool Grey / Pink Prime / Black</p>
+            <TabsWindow>
+              <DetailsTab
+                onClick={() => {
+                  setDetailsTab("details");
+                }}
+              >
+                Details
+              </DetailsTab>
+              <DetailsTab
+                onClick={() => {
+                  setDetailsTab("spec");
+                }}
+              >
+                Specification
+              </DetailsTab>
+              <DetailsTab
+                onClick={() => {
+                  setDetailsTab("fit");
+                }}
+              >
+                Fit and Care
+              </DetailsTab>
+            </TabsWindow>
+            <DetailsWindow>
+              {detailsTab === "details" ? (
+                <Details>
+                  <div>
+                    <p>
+                      From the D/MS/X collection comes a story of surreal
+                      comfort. Layered textures, intricate lines and vivid
+                      colours combine in a design influenced by the exaggerated
+                      world of our dreams. The React foam and an ultra-plush
+                      tongue provide dreamlike comfort. Step into your dream—the
+                      Nike React Vision.
+                    </p>
+                  </div>
+                </Details>
+              ) : null}
+              {detailsTab === "spec" ? (
+                <Details>
+                  <div>
+                    <li>
+                      The padded, low-cut collar looks sleek and feels great
+                    </li>
+                    <li>Pull tabs at heel and tongue for easy on and off</li>
+                    <li>Colour Shown: Wolf Grey/Cool Grey/Pink Prime/Black</li>
+                    <li>Style: CI7523-009</li>
+                  </div>
+                </Details>
+              ) : null}
+              {detailsTab === "fit" ? (
+                <Details>
+                  <div>
+                    <li>
+                      Micro-detailing, exaggerated proportions and
+                      multi-textured aesthetic give this shoe a unique
+                      appearance. The airy upper features all-over mesh.
+                    </li>
+                    <li>
+                      The Nike React foam midsole with soft rubber detailing
+                      delivers unrivalled, all-day comfort. The ultra-plush
+                      tongue provides additional cushioning.
+                    </li>
+                    <li>
+                      The TPU heel clip creates a sporty look, refreshes your
+                      heritage styling and adds stability.
+                    </li>
+                  </div>
+                </Details>
+              ) : null}
+            </DetailsWindow>
+            <Colors>
+              <p>Colors:</p>
+              {renderColors}
+            </Colors>
           </ProductInfo>
           <Suppliers />
-        </ProductRow>
-        <ProductRow>
-          <ProductDetails />
         </ProductRow>
         <ProductRow>
           <Reviews>

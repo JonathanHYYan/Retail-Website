@@ -39,10 +39,61 @@ export const ProductRow = styled.div`
 
 export const ProductInfo = styled.div`
   width: 50%;
-  text-align: center;
+  margin: 2rem auto;
+  text-align: left;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  align-items: center;
+`;
+
+export const TabsWindow = styled.div`
+  margin: 0 0 0.8rem 0;
+  background-color: #ddd;
+  width:100%;
+  display: flex;
+  justify-content: space-evenly;
+`;
+export const DetailsWindow = styled.div`
+  width:80%;
+`;
+
+export const DetailsTab = styled.button`
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 0.3rem 0;
+  transition: 0.3s;
+  font-size: 17px;
+  border-bottom: 2px solid transparent;
+
+  :hover {
+    border-bottom: 2px solid #ddd;
+  }
+
+  :focus {
+    border-bottom: 2px solid ${props => props.theme.mens.accent};
+  }
+`;
+
+export const Details = styled.div`
+  height: 10rem;
+
+  p {
+    margin:0;
+  }
+  div {
+    margin-top: 0.5rem;
+  }
+`;
+
+export const Colors = styled.div`
+  display: flex;
+  font-size: 0.8em;
+  p {
+    margin: 0 0.3rem;
+  }
 `;
 
 export const Reviews = styled.div`
@@ -68,7 +119,7 @@ export const CustomerReviews = styled.div`
   flex-direction: column;
   align-items: center;
   background-color: white;
-  
+
   h1 {
     margin: 2rem 0 0 0;
   }
