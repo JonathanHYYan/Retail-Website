@@ -52,13 +52,12 @@ const ProductPage = () => {
       return response;
     });
     const responses = await Promise.all(promises);
-
-    const apiHolder = [];
-    await responses.map((response) => {
-      apiHolder.push(response.json());
-    });
-    console.log(apiHolder);
-    await setProductApi(apiHolder);
+    const values = await Promise.all(
+      responses.map((response) => response.json())
+    );
+    const products = values.map((object, index) =>Object.values(object)[0]);
+    console.log(products);
+    setProductApi(products);
   };
 
   const generateCard = (product) => {
@@ -89,7 +88,7 @@ const ProductPage = () => {
   const suggestedStock = suggested.map((item) => {
     return generateCard(item);
   });
-
+  console.log(productApi);
   return (
     <Product>
       <BreadCrumb>
@@ -108,7 +107,7 @@ const ProductPage = () => {
       <ProductWindow>
         <CaroselRow>
           <Carousel />
-          <Sizes productApi={productApi} />
+          {productApi.length && <Sizes productApi={productApi} />}
         </CaroselRow>
         <ProductRow>
           <ProductInfo>
@@ -189,7 +188,7 @@ const ProductPage = () => {
               {renderColors}
             </Colors>
           </ProductInfo>
-          <Suppliers />
+          {productApi.length && <Suppliers productApi={productApi}/>}
         </ProductRow>
         <ProductRow>
           <Reviews>
@@ -217,10 +216,8 @@ const ProductPage = () => {
         </ProductRow>
       </ProductWindow>
       <ProductWindow>
-          <h1>You Might Also Like</h1>
-          <Category>
-          {suggestedStock}  
-          </Category>
+        <h1>You Might Also Like</h1>
+        <Category>{suggestedStock}</Category>
       </ProductWindow>
     </Product>
   );

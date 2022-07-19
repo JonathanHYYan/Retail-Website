@@ -12,12 +12,18 @@ import {
 import BlackLogo from "../../assets/BlackLogo.jpeg";
 import { BsSearch } from "react-icons/bs";
 import ScrollToTop from "../UI/ScrollToTop";
-import { useState } from "react";
 import {AiOutlineMenu} from "react-icons/ai";
+import { useEffect, useState } from "react";
 
 const Nav = () => {
-  const [isScrolling, setIsScrolling] = useState(false);
+  // const [isScrolling, setIsScrolling] = useState(false);
+  // const [clientX, setClientX] = useState(0);
+  // const [scrollX, setScrollX] = useState(0);
 
+  // const onMouseDown = (e) => {
+  //   setIsScrolling(true);
+  //   setClientX(e.clientX);
+  // };
 
   return (
     <>
@@ -40,7 +46,11 @@ const Nav = () => {
           <NIcon><AiOutlineMenu/></NIcon>
         </NavLinks>
       </NavBar>
-      <TagList >
+      <TagList
+        // onMouseDown={onMouseDown}
+        // onMouseUp={onMouseUp}
+        // onMouseMove={onMouseMove}
+      >
         <TLinkSell to="">Sell Item</TLinkSell>
         <p>OR</p>
         <TLink to="">Air Jordan 1</TLink>

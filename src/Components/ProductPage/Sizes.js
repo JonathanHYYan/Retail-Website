@@ -1,38 +1,30 @@
 import { Size, SizeBox } from "./SizesStyling";
 import { useEffect, useState } from "react";
 
-const dummySizes = [
-  2.5, 3, 3.5, 4, 4.6, 5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5,
-];
 
-const Sizes = (productApi) => {
+const Sizes = (props) => {
+  const { productApi } = props;
   const [clickedSizes, setClickedSizes] = useState([]);
   const [availableSizes, setAvailableSizes] = useState([]);
-
+  
   useEffect(() => {
     let selectDefault = [];
-    dummySizes.map((size) => {
+    availableSizes.map((size) => {
       selectDefault.push(false);
     });
-
-    if (productApi.length) {
-      loadSizes(productApi);
-    };
-
+    console.log(productApi);
+    loadSizes(productApi);
     setClickedSizes(selectDefault);
   }, productApi);
 
-  const supplierSizes = [];
-
   const loadSizes = (data) => {
-    let lifeSizes = [];
-    let nikeSizes = [];
-    let footSizes = [];
+    const dataSizes = data.map((object) => Object.values(object.Sizes));
+    const concatSizesArr = [].concat.apply([], dataSizes);
+    const mergeSizes = concatSizesArr.map(element => element.split(/[, ]+/));
+    const concatSizes = [].concat.apply([], mergeSizes).filter(Boolean);
+    const filterSizes = [...new Set(concatSizes)];
 
-    console.log(data);
-    console.log(data.productApi[0]);
-    // data.LifeStle.Sizes.map(size => supplierSizes.push(size));
-    // console.log(supplierSizes);
+    setAvailableSizes(filterSizes);
   };
 
   const clickHandler = (index) => {
@@ -41,7 +33,7 @@ const Sizes = (productApi) => {
     setClickedSizes(selectedArr);
   };
 
-  const sizes = dummySizes.map((size, index) => {
+  const sizes = availableSizes.map((size, index) => {
     return (
       <Size
         onClick={() => {
