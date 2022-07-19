@@ -1,6 +1,6 @@
 import {
   CustomerReviews,
-  Reccomends,
+  Recommends,
   ReviewBoxes,
   ReviewButton,
   ReviewWindow,
@@ -59,12 +59,12 @@ const Review = () => {
             Bought these for my wife's birthday. She's been in love with them
             since and runs regularly now. Couldn't be more pleased with them
           </p>
-          <Reccomends>
+          <Recommends>
             <p>
               Recommends this product{" "}
               <TiTick size={20} style={{ color: "green" }} />
             </p>
-          </Reccomends>
+          </Recommends>
         </UserReview>
       </ReviewBoxes>
       <ReviewButton>Write a Review</ReviewButton>

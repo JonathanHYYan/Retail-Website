@@ -51,7 +51,7 @@ const Footer = () => {
               </ul>
             </Brands>
             <Brands>
-              <h2>Products</h2>
+              <h2>PRODUCTS</h2>
               <ul>
                 <li>Tops</li>
                 <li>Leggings</li>

@@ -13,6 +13,7 @@ import {
   DetailsTab,
   Details,
   TabsWindow,
+  CaroselRow,
 } from "./ProductPageStyling";
 import Sizes from "./Sizes";
 import Suppliers from "./Supplier";
@@ -21,6 +22,7 @@ import Review from "./Review";
 import { useState, useEffect } from "react";
 import { Demo } from "../../assets/DemoStock";
 import ProductCard from "../UI/Card";
+import { Category } from "../LandingPage/ProductStyling";
 
 const dummyColors = ["Wolf Grey", "Cool Grey", "Pink Prime", "Black"];
 
@@ -29,6 +31,7 @@ const vendors = ["Lifestyle", "footasylum", "Nike"];
 const ProductPage = () => {
   const [suggested, setSuggested] = useState([]);
   const [detailsTab, setDetailsTab] = useState("details");
+  const [productApi, setProductApi] = useState([]);
 
   useEffect(() => {
     let suggestArr = [];
@@ -41,21 +44,21 @@ const ProductPage = () => {
     }
     getData();
     setSuggested(suggestArr);
-  }, []);
+  }, [Demo]);
 
   const getData = async () => {
-    const response = await fetch(
-      "http://0b69-45-132-108-35.eu.ngrok.io/footasylum"
-    );
-    console.log(await response.json());
-    const promises = vendors.map(vendor => {
-      const response = fetch(
-        `http://0b69-45-132-108-35.eu.ngrok.io/${vendor}`
-      );
+    const promises = vendors.map((vendor) => {
+      const response = fetch(`http://0b69-45-132-108-35.eu.ngrok.io/${vendor}`);
       return response;
-    })
+    });
     const responses = await Promise.all(promises);
-    console.log(responses);
+
+    const apiHolder = [];
+    await responses.map((response) => {
+      apiHolder.push(response.json());
+    });
+    console.log(apiHolder);
+    await setProductApi(apiHolder);
   };
 
   const generateCard = (product) => {
@@ -103,14 +106,15 @@ const ProductPage = () => {
         <p>DH4439-102</p>
       </ProductDetail>
       <ProductWindow>
-        <ProductRow>
+        <CaroselRow>
           <Carousel />
-          <Sizes />
-        </ProductRow>
+          <Sizes productApi={productApi} />
+        </CaroselRow>
         <ProductRow>
           <ProductInfo>
             <TabsWindow>
               <DetailsTab
+                autoFocus
                 onClick={() => {
                   setDetailsTab("details");
                 }}
@@ -213,8 +217,10 @@ const ProductPage = () => {
         </ProductRow>
       </ProductWindow>
       <ProductWindow>
-        <h1>You Might Also Like</h1>
-        <div style={{ display: "flex" }}>{suggestedStock}</div>
+          <h1>You Might Also Like</h1>
+          <Category>
+          {suggestedStock}  
+          </Category>
       </ProductWindow>
     </Product>
   );

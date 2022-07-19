@@ -7,11 +7,13 @@ import {
   TagList,
   TLink,
   TLinkSell,
+  NIcon,
 } from "./NavStyles";
 import BlackLogo from "../../assets/BlackLogo.jpeg";
 import { BsSearch } from "react-icons/bs";
 import ScrollToTop from "../UI/ScrollToTop";
-import { useState, useRef } from "react";
+import { useState } from "react";
+import {AiOutlineMenu} from "react-icons/ai";
 
 const Nav = () => {
   const [isScrolling, setIsScrolling] = useState(false);
@@ -35,6 +37,7 @@ const Nav = () => {
           <NLink to="">
             <BsSearch style={{ fontSize: "1em", margin: "0 1rem 0 4rem" }} />
           </NLink>
+          <NIcon><AiOutlineMenu/></NIcon>
         </NavLinks>
       </NavBar>
       <TagList >

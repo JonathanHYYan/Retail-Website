@@ -10,6 +10,16 @@ export const SizeBox = styled.div`
   flex-wrap: wrap;
   justify-content: space-evenly;
 
+  @media (max-width: 1024px) {
+    width:70%;
+    margin:auto;
+    padding:0;
+  }
+  @media (max-width: 768px) {
+    width:100%;
+    padding:0;
+  }
+
   h1 {
     width: 100%;
     display: flex;
@@ -30,6 +40,12 @@ export const Size = styled.button`
   display:flex;
   justify-content: center;
   align-items: center;
+
+  
+  @media(max-width: 1200px) {
+    transform: scale(0.8);
+    margin: 0.1rem;
+  }
 
   :select {
     border: 1px solid black;

@@ -24,12 +24,30 @@ export const NLink = styled(Link)`
   text-decoration: none;
   margin: 0 1rem;
   color: black;
+
+  @media (max-width: 900px) {
+    font-size: .7em;
+  }
+
+  @media (max-width: 768px) {
+    display: none;
+  }
 `;
 
 export const Logo = styled.img`
   max-height: 2.5rem;
   width: auto;
   margin: 1.25rem 2rem;
+`;
+
+export const NIcon = styled.a`
+font-size: 1em;
+margin: 0.1rem 3rem;
+display: none;
+
+@media (max-width: 768px) {
+  display: block;
+}
 `;
 
 export const TagList = styled.div`

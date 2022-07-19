@@ -9,7 +9,10 @@ Search bar functionality
 
 order from looks shit figure out different style
 
-tabs title needs spacing on top adjusted details/specification etc
+nav burger drop down functionality
 
+populate data for product page and suggested
 
-figure out why product page mounts twice
+FIRST:cd C:\Program Files\Google\Chrome\Application
+SECOND: chrome.exe --user-data-dir="C:/Chrome dev session" --disable-web-security
+DONT USE BROWSER FOR ANYTHING ELSE!!!!

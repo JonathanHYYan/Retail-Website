@@ -3,7 +3,11 @@ import styled from "styled-components";
 export const CarouselContainer = styled.div`
   width: 50%;
   display: flex;
-  position: relative;
+  flex-direction:column;
+
+  @media (max-width: 1024px) {
+    width:85%
+  }
 `;
 
 export const ImgHolder = styled.div`
@@ -14,6 +18,7 @@ export const ImgHolder = styled.div`
   align-items: center;
   overflow:hidden;
   transition-duration: 1s ease;
+  position: relative;
 `;
 export const Img = styled.img`
   width: 100%;

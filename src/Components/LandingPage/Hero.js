@@ -1,8 +1,8 @@
-import { NLink } from "../Nav/NavStyles";
 import {
   HeroBG,
   HeroText,
   Shop,
+  SLink,
 } from "./HeroStyles";
 
 const Hero = () => {
@@ -11,9 +11,9 @@ const Hero = () => {
       <HeroBG></HeroBG>
       <HeroText>
         <h1>Nike React Vision</h1>
-        <NLink to="/productpage">
+        <SLink to="/productpage">
           <Shop>Shop Now</Shop>
-        </NLink>
+        </SLink>
       </HeroText>
     </>
   );

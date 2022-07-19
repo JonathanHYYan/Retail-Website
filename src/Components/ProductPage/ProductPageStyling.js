@@ -29,12 +29,33 @@ export const ProductDetail = styled.div`
 
 export const ProductWindow = styled.div`
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+
+export const CaroselRow = styled.div`
+  width: 100%;
+  display: flex;
+  padding: 1rem 0;
+
+  @media (max-width: 1024px) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+  }
 `;
 
 export const ProductRow = styled.div`
   width: 100%;
   display: flex;
   padding: 1rem 0;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    padding: 0;
+  }
 `;
 
 export const ProductInfo = styled.div`
@@ -44,28 +65,41 @@ export const ProductInfo = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @media (max-width: 768px) {
+    width: 80%;
+  }
 `;
 
 export const TabsWindow = styled.div`
   margin: 0 0 0.8rem 0;
   background-color: #ddd;
-  width:100%;
+  width: 100%;
   display: flex;
   justify-content: space-evenly;
 `;
 export const DetailsWindow = styled.div`
-  width:80%;
+  width: 80%;
+  margin-bottom: 1rem;
+
+  @media (max-width: 1024px) {
+    width: 100%;
+  }
+
+  @media (max-width: 768px) {
+    width: 80%;
+  }
 `;
 
 export const DetailsTab = styled.button`
   background-color: inherit;
-  float: left;
   border: none;
   outline: none;
   cursor: pointer;
   padding: 0.3rem 0;
   transition: 0.3s;
-  font-size: 17px;
+  font-size: 1.1em;
+  border-top: 2px solid transparent;
   border-bottom: 2px solid transparent;
 
   :hover {
@@ -73,15 +107,13 @@ export const DetailsTab = styled.button`
   }
 
   :focus {
-    border-bottom: 2px solid ${props => props.theme.mens.accent};
+    border-bottom: 2px solid ${(props) => props.theme.mens.accent};
   }
 `;
 
 export const Details = styled.div`
-  height: 10rem;
-
   p {
-    margin:0;
+    margin: 0;
   }
   div {
     margin-top: 0.5rem;
@@ -181,7 +213,7 @@ export const ReviewButton = styled.button`
   cursor: pointer;
 `;
 
-export const Reccomends = styled.div`
+export const Recommends = styled.div`
   p {
     display: flex;
     align-items: center;
@@ -189,20 +221,13 @@ export const Reccomends = styled.div`
   }
 `;
 
-export const Buy = styled.div`
+export const Upsale = styled.div`
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 1rem 0;
-`;
+  display:flex;
+  
 
-export const Btn = styled.button`
-  cursor: pointer;
-  background-color:${(props) => props.theme.mens.accent};
-  border:none;
-  border-radius: 5px;
-  color: white;
-  padding 1em;
-  border-radius: 5px;
+  div {
+    margin:0.5rem;
+    
+  }
 `;

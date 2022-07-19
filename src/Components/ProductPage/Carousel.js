@@ -1,7 +1,6 @@
 import {
   BtnRight,
   BtnLeft,
-  BtnHolder,
   CarouselContainer,
   Img,
   ImgHolder,
@@ -40,13 +39,15 @@ const Carousel = () => {
   return (
     <>
       <CarouselContainer>
-        <ImgHolder>{renderImgs}</ImgHolder>
+        <ImgHolder>
+          {renderImgs}
           <BtnLeft onClick={leftHandler}>
             <FaChevronLeft />
           </BtnLeft>
           <BtnRight onClick={rightHandler}>
             <FaChevronRight />
           </BtnRight>
+        </ImgHolder>
       </CarouselContainer>
     </>
   );
