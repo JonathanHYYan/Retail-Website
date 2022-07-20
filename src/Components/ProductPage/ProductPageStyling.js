@@ -12,6 +12,7 @@ export const BreadCrumb = styled.div`
   p {
     margin: 0.5rem 0.5rem 0.5rem 0;
     font-size: 0.8em;
+    color: #3a3a3a;
   }
 `;
 
@@ -24,6 +25,7 @@ export const ProductDetail = styled.div`
 
   p {
     margin: 0.5rem 0 1rem 0;
+    color: #3a3a3a;
   }
 `;
 
@@ -73,15 +75,14 @@ export const ProductInfo = styled.div`
 
 export const TabsWindow = styled.div`
   margin: 0 0 0.8rem 0;
-  background-color: #ddd;
   width: 100%;
   display: flex;
   justify-content: space-evenly;
 `;
 export const DetailsWindow = styled.div`
-  width: 80%;
   margin-bottom: 1rem;
-
+  display: flex;
+  justify-content: center;
   @media (max-width: 1024px) {
     width: 100%;
   }
@@ -98,25 +99,45 @@ export const DetailsTab = styled.button`
   cursor: pointer;
   padding: 0.3rem 0;
   transition: 0.3s;
-  font-size: 1.1em;
+  font-size: 0.9em;
   border-top: 2px solid transparent;
-  border-bottom: 2px solid transparent;
+  border-bottom: 2px solid
+    ${(props) => (props.isSelected ? "#dc0019" : "transparent")};
+  opacity: ${(props) => (props.isSelected ? "1" : "0.7")};
 
   :hover {
-    border-bottom: 2px solid #ddd;
+    opacity: 1;
   }
 
-  :focus {
-    border-bottom: 2px solid ${(props) => props.theme.mens.accent};
+  :nth-child(2) {
+    padding: 0 5%;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
   }
 `;
 
 export const Details = styled.div`
+  display: flex;
+  justify-content: center;
   p {
     margin: 0;
+    color: #3a3a3a;
+    font-size: 0.8em;
+    line-height: 1.6;
   }
   div {
+    width: 80%;
     margin-top: 0.5rem;
+  }
+  ul {
+    width: 85%;
+    margin-top: 0.5rem;
+    list-style-position: outside;
+  }
+  li {
+    color: #3a3a3a;
+    font-size: 0.8em;
+    padding: 0.5em 0;
   }
 `;
 
@@ -145,50 +166,24 @@ export const Rating = styled.span`
   }
 `;
 
-export const CustomerReviews = styled.div`
+export const Upsale = styled.div`
   width: 100%;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: white;
 
-  h1 {
-    margin: 2rem 0 0 0;
+  div {
+    margin: 0.5rem;
   }
 `;
 
-export const ReviewWindow = styled.section`
-  width: 100%;
-`;
-
-export const ReviewBoxes = styled.div`
+export const Suggested = styled.div`
   display: flex;
-  padding: 1.5rem 0 1.5rem 1rem;
-  width: 100%;
-  border: 1px solid rgb(220, 220, 220, 0.9);
-  border-radius: 5px;
-`;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  margin: auto;
 
-export const User = styled.div`
-  width: 30%;
-
-  p {
-    font-weight: bold;
-  }
-
-  span {
-    font-weight: normal;
-  }
-`;
-
-export const UserReview = styled.div`
-  width: 70%;
-  padding: 0 1rem;
-  display: flex;
-  flex-direction: column;
-
-  p {
-    font-size: 0.9em;
+  @media (max-width: 960px) {
+    justify-content: space-evenly;
   }
 `;
 
@@ -198,36 +193,5 @@ export const CustomerRating = styled.span`
 
   p {
     margin: 0.2rem;
-  }
-`;
-
-export const ReviewButton = styled.button`
-  background-color: ${(props) => props.theme.mens.accent};
-  border: none;
-  border-radius: 5px;
-  margin: 2rem 0;
-  float:right;
-  color:white;
-  width 7rem;
-  padding: 0.5rem;
-  cursor: pointer;
-`;
-
-export const Recommends = styled.div`
-  p {
-    display: flex;
-    align-items: center;
-    font-weight: bold;
-  }
-`;
-
-export const Upsale = styled.div`
-  width: 100%;
-  display:flex;
-  
-
-  div {
-    margin:0.5rem;
-    
   }
 `;

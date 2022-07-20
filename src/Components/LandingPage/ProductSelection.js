@@ -1,8 +1,4 @@
-import {
-  Category,
-  CatHeader,
-  ProductGallery,
-} from "./ProductStyling";
+import { Category, CatHeader, ProductGallery } from "./ProductStyling";
 import { Demo } from "../../assets/DemoStock";
 import { useEffect, useState } from "react";
 import ProductCard from "../UI/Card";
@@ -20,7 +16,7 @@ const ProductSelection = () => {
       Demo.images.map((image) => {
         if (image.state === "popular") {
           return popArr.push(image);
-        } else if (image.state === "deal") {
+        } else if (image.state === "best") {
           return dealArr.push(image);
         } else if (image.state === "new") {
           return newArr.push(image);
@@ -34,12 +30,13 @@ const ProductSelection = () => {
 
   const generateCard = (product) => {
     return (
-      <ProductCard 
-      src={product.src}
-      caption={product.caption}
-      name={product.name}
-      type={product.type}
-      price={product.price}
+      <ProductCard
+        src={product.src}
+        caption={product.caption}
+        name={product.name}
+        type={product.type}
+        price={product.price}
+        key={product.id}
       />
     );
   };
@@ -58,12 +55,12 @@ const ProductSelection = () => {
 
   return (
     <ProductGallery>
+      <CatHeader>New Arrivals</CatHeader>
+      <Category>{newDealStock}</Category>
       <CatHeader>Most Popular</CatHeader>
       <Category>{popularStock}</Category>
       <CatHeader>Best Deals</CatHeader>
       <Category>{bestDealStock}</Category>
-      <CatHeader>New Arrivals</CatHeader>
-      <Category>{newDealStock}</Category>
     </ProductGallery>
   );
 };

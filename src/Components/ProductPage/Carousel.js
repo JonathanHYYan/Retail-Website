@@ -22,11 +22,9 @@ const Carousel = () => {
   const [imgIndex, setImgIndex] = useState(0);
   const length = imageHolder.length;
 
-  const renderImgs = imageHolder.map((image, index) => {
-    return (
-      <>{index === imgIndex && <Img src={image} alt={`shoe-${index}`} />}</>
-    );
-  });
+  const renderImgs = imageHolder.map((image, index) => index === imgIndex && <Img key={image} src={image} alt={`shoe-${index}`} />
+  
+  );
 
   const leftHandler = () => {
     setImgIndex(imgIndex === 0 ? length - 1 : imgIndex - 1);

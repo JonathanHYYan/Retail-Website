@@ -6,12 +6,18 @@ export const NavBar = styled.nav`
   justify-content: space-between;
   font-family: ${(props) => props.theme.mens.fontFamily};
   align-items: center;
+  border-bottom: solid 1px LightGray;
+  background-color: #1C1C1C;
 `;
 
 export const NavLinks = styled.ul`
   display: flex;
   justify-content: flex-end;
   align-items: center;
+
+  @media (max-width: 815px) {
+    display: none;
+  }
 `;
 
 export const LLink = styled(Link)`
@@ -23,14 +29,37 @@ export const NLink = styled(Link)`
   list-style-type: none;
   text-decoration: none;
   margin: 0 1rem;
+  color: white;
+ 
+  @media (max-width: 815px) {
+    display: none;
+  }
+`;
+export const DLink = styled(Link)`
+  list-style-type: none;
+  text-decoration: none;
+  margin: 0 1rem;
   color: black;
 
-  @media (max-width: 900px) {
-    font-size: .7em;
+  @media (max-width: 815px) {
+    font-size: 0.6em;
+    padding: 0.5em;
   }
+`;
 
-  @media (max-width: 768px) {
-    display: none;
+export const DropLinks = styled.ul`
+  display: none;
+  font-family: helvetica;
+  padding-bottom: 1rem;
+  border-bottom: solid 1px LightGray;
+
+  @media (max-width: 815px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  @media (max-width: 700px) {
+    flex-direction:column;
   }
 `;
 
@@ -41,75 +70,11 @@ export const Logo = styled.img`
 `;
 
 export const NIcon = styled.a`
-font-size: 1em;
-margin: 0.1rem 3rem;
-display: none;
-
-@media (max-width: 768px) {
-  display: block;
-}
-`;
-
-export const TagList = styled.div`
-  cursor: pointer;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  border-top: solid 1px LightGray;
-  font-family: ${(props) => props.theme.mens.fontFamily};
-  font-size: 0.75em;
-  padding: 1rem 0;
-  overflow: auto;
-  white-space: nowrap;
-  overflow-x:hidden;
-`;
-
-export const TLink = styled(Link)`
-  cursor: pointer;
-  list-style-type: none;
-  text-decoration: none;
-  margin: 0 1rem;
-  border: 1px solid transparent;
-  box-shadow: 1px 1px 2px 0 grey;
-  padding: 0.5rem 1rem;
-  text-align: center;
-  border-radius: 2rem;
-  color: black;
-  font-weight: bold;
-
-  :hover {
-    transition: 0.15s;
-    border: 1px solid grey;
-    box-shadow: none;
-  }
-
-  :focus {
-    border: 1px solid blue;
-    box-shadow: none;
+  font-size: 1em;
+  margin: 0.1rem 3rem;
+  display:none;
+  @media (max-width: 815px) {
+    display:block;
   }
 `;
-export const TLinkSell = styled(Link)`
-  cursor: pointer;
-  list-style-type: none;
-  text-decoration: none;
-  margin: 0 1rem;
-  border: 2px solid transparent;
-  box-shadow: 2px 1px 2px 0 grey;
-  background-color: ${(props) => props.theme.mens.accent};
-  color: white;
-  padding: 0.5rem 1rem;
-  text-align: center;
-  border-radius: 2rem;
-  font-weight: bold;
 
-  :hover {
-    transition: 0.15s;
-    border: 2px solid ${(props) => props.theme.mens.accent};
-    box-shadow: none;
-  }
-
-  :focus {
-    border: 2px solid ${(props) => props.theme.mens.accent};
-    box-shadow: none;
-  }
-`;

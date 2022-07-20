@@ -6,7 +6,7 @@ import {
   ReviewWindow,
   User,
   UserReview,
-} from "./ProductPageStyling";
+} from "./ReviewStyles";
 import { IconContext } from "react-icons";
 import { RiArrowDownSLine } from "react-icons/ri";
 import { useState } from "react";

@@ -1,17 +1,17 @@
-side scroll feature for tag if i have time
-https://codepen.io/thenutz/pen/VwYeYEE
-
-add accepted payment methods with logos like under armor company
-
 sizes filters which shop is available
+display prices from vendors 
+
+make it look like showroom available at
 
 Search bar functionality
 
-order from looks shit figure out different style
+images should be smaller as the window size decreases not bigger
 
-nav burger drop down functionality
+########### IF TIME IS AVAILABLE ######################
 
-populate data for product page and suggested
+add grab and hold cursor styling for tag scrolling effect
+
+if time available add dots/dashes to show how many images available and which image is active and when you click on dot/dash it goes to image
 
 FIRST:cd C:\Program Files\Google\Chrome\Application
 SECOND: chrome.exe --user-data-dir="C:/Chrome dev session" --disable-web-security

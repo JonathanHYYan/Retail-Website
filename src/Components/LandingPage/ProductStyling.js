@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 export const ProductGallery = styled.section`
+  max-width: 1500px;
   width: 80%;
   margin: 3em auto;
   font-family: ${(props) => props.theme.mens.fontFamily};
