@@ -12,18 +12,41 @@ import {
 import BlackLogo from "../../assets/BlackLogo.jpeg";
 import { BsSearch } from "react-icons/bs";
 import ScrollToTop from "../UI/ScrollToTop";
-import {AiOutlineMenu} from "react-icons/ai";
-import { useEffect, useState } from "react";
+import { AiOutlineMenu } from "react-icons/ai";
+import { useState, useRef, useEffect } from "react";
 
 const Nav = () => {
-  // const [isScrolling, setIsScrolling] = useState(false);
-  // const [clientX, setClientX] = useState(0);
-  // const [scrollX, setScrollX] = useState(0);
+  const [isScrolling, setIsScrolling] = useState(false);
+  const [startX, setStartX] = useState();
+  const [scrollLeft, setScrollLeft] = useState();
+  const slider = useRef(null);
 
-  // const onMouseDown = (e) => {
-  //   setIsScrolling(true);
-  //   setClientX(e.clientX);
-  // };
+  const onMouseDown = (e) => {
+    setIsScrolling(true);
+    if(slider){setStartX(e.pageX - slider.current.offsetLeft)
+    setScrollLeft(slider.current.scrollLeft)
+    console.log(startX)};
+  };
+
+  const onMouseLeave = (e) => {
+    setIsScrolling(false);
+  };
+
+  const onMouseUp = (e) => {
+    setIsScrolling(false);
+  };
+
+  const onMouseMove = (e) => {
+    if(!isScrolling)return;
+    e.preventDefault();
+    if(slider){const x = e.pageX - slider.current.offsetLeft
+    console.count(isScrolling)
+    console.log(x, startX);
+    const walk = x - startX;
+    slider.current.scrollLeft = scrollLeft - walk;}
+  };
+
+
 
   return (
     <>
@@ -43,13 +66,17 @@ const Nav = () => {
           <NLink to="">
             <BsSearch style={{ fontSize: "1em", margin: "0 1rem 0 4rem" }} />
           </NLink>
-          <NIcon><AiOutlineMenu/></NIcon>
+          <NIcon>
+            <AiOutlineMenu />
+          </NIcon>
         </NavLinks>
       </NavBar>
       <TagList
-        // onMouseDown={onMouseDown}
-        // onMouseUp={onMouseUp}
-        // onMouseMove={onMouseMove}
+        ref={slider}
+        onMouseDown={onMouseDown}
+        onMouseUp={onMouseUp}
+        onMouseMove={onMouseMove}
+        onMouseLeave={onMouseLeave}
       >
         <TLinkSell to="">Sell Item</TLinkSell>
         <p>OR</p>

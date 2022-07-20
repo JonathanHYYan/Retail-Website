@@ -23,6 +23,8 @@ import { useState, useEffect } from "react";
 import { Demo } from "../../assets/DemoStock";
 import ProductCard from "../UI/Card";
 import { Category } from "../LandingPage/ProductStyling";
+import { Size } from "./SizesStyling";
+import { Supplier } from "./SupplierStyling";
 
 const dummyColors = ["Wolf Grey", "Cool Grey", "Pink Prime", "Black"];
 
@@ -32,6 +34,9 @@ const ProductPage = () => {
   const [suggested, setSuggested] = useState([]);
   const [detailsTab, setDetailsTab] = useState("details");
   const [productApi, setProductApi] = useState([]);
+  const [clickedSizes, setClickedSizes] = useState([]);
+  const [availableSizes, setAvailableSizes] = useState([]);
+  const [suppliers, setSuppliers] = useState([]);
 
   useEffect(() => {
     let suggestArr = [];
@@ -41,10 +46,22 @@ const ProductPage = () => {
           return suggestArr.push(image);
         }
       });
-    }
+    };
+
+    let selectDefault = [];
+    availableSizes.map((size) => {
+      selectDefault.push(false);
+    });
+    
     getData();
+    if(productApi.length){
+      loadSizes(productApi);
+      loadSuppliers(productApi);
+
+    }
+    setClickedSizes(selectDefault);
     setSuggested(suggestArr);
-  }, [Demo]);
+  }, [Demo, ]);
 
   const getData = async () => {
     const promises = vendors.map((vendor) => {
@@ -56,9 +73,53 @@ const ProductPage = () => {
       responses.map((response) => response.json())
     );
     const products = values.map((object, index) =>Object.values(object)[0]);
-    console.log(products);
+    // console.log(products);
     setProductApi(products);
   };
+
+  const loadSizes = (data) => {
+    const dataSizes = data.map((object) => Object.values(object.Sizes));
+    const concatSizesArr = [].concat.apply([], dataSizes);
+    const mergeSizes = concatSizesArr.map(element => element.split(/[, ]+/));
+    const concatSizes = [].concat.apply([], mergeSizes).filter(Boolean);
+    const filterSizes = [...new Set(concatSizes)];
+
+    setAvailableSizes(filterSizes);
+  };
+
+  const clickHandler = (index) => {
+    let selectedArr = [...clickedSizes];
+    selectedArr[index] = !selectedArr[index];
+    // console.log(selectedArr);
+    setClickedSizes(selectedArr);
+  };
+
+  const sizes = availableSizes.map((size, index) => {
+    return (
+      <Size
+        onClick={() => {
+          clickHandler(index);
+        }}
+        isSelected={clickedSizes[index]}
+      >
+        UK {size}
+      </Size>
+    );
+  });
+
+  const loadSuppliers = (data) =>{
+    const supplierData = data.map((object) => Object.values(object.Retailer));
+    const filterSupplier = supplierData.map(array => [...new Set(array)]);
+    const mergeSupplier = [].concat.apply([], filterSupplier);
+    // console.log(`merged supplier ${mergeSupplier}`);
+    setSuppliers(mergeSupplier);
+  }
+
+  const availableSupplier = suppliers.map((supplier)=>{
+    return(
+      <Supplier><p>{supplier}</p></Supplier>
+    )
+  })
 
   const generateCard = (product) => {
     return (
@@ -89,6 +150,9 @@ const ProductPage = () => {
     return generateCard(item);
   });
   console.log(productApi);
+  console.log(availableSizes);
+  console.log(suppliers);
+
   return (
     <Product>
       <BreadCrumb>
@@ -107,7 +171,7 @@ const ProductPage = () => {
       <ProductWindow>
         <CaroselRow>
           <Carousel />
-          {productApi.length && <Sizes productApi={productApi} />}
+          {availableSizes.length && <Sizes sizes={sizes} />}
         </CaroselRow>
         <ProductRow>
           <ProductInfo>
@@ -188,7 +252,7 @@ const ProductPage = () => {
               {renderColors}
             </Colors>
           </ProductInfo>
-          {productApi.length && <Suppliers productApi={productApi}/>}
+          {availableSupplier.length && <Suppliers availableSupplier={availableSupplier}/>}
         </ProductRow>
         <ProductRow>
           <Reviews>
