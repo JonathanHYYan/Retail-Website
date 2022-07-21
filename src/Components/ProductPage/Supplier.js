@@ -7,7 +7,7 @@ const Suppliers = (props) => {
 
   const renderSuppliers = suppliers.map((supplier, index) => {
     const startUpHandler = (available,index) => {
-      console.log(available)
+      // console.log(available)
       if (available.length === 0) {
         return (!available);
       } else return !available[index];

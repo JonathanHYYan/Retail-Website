@@ -112,16 +112,16 @@ const ProductPage = () => {
       );
     }
   };
-  
+
   const availbilityCheck = () => {
-    const boolHolder = sizesByRetail.map((sizeArray) =>
-      sizeArray.some((nums) => nums.includes(String(selectedSizes)))
-    );
+    if (sizesByRetail.length) {
+      const b1 = selectedSizes.map(String).map(num => sizesByRetail[0].includes(num)).every(bool => bool === true);
+      const b2 = selectedSizes.map(String).map(num => sizesByRetail[1].includes(num)).every(bool => bool === true);
+      const b3 = selectedSizes.map(String).map(num => sizesByRetail[2].includes(num)).every(bool => bool === true);
 
-    setAvailbility(boolHolder);
+      setAvailbility([b1, b2, b3]);
+    }
   };
-
-  console.log(availbility);
 
   const generateCard = (product) => {
     return (
