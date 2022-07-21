@@ -10,21 +10,21 @@ import React, { useState } from "react";
 
 const dummyColors = ["Wolf Grey", "Cool Grey", "Pink Prime", "Black"];
 
-const InfoSection = () => {
+const InfoSection = ({retailColors}) => {
   const [detailsTab, setDetailsTab] = useState("details");
-
-  const renderColors = dummyColors.map((color, index) => {
-    if (index < dummyColors.length - 1) {
-      return (
-        <React.Fragment key={color}>
-          <p>{color}</p>
-          <p> / </p>
-        </React.Fragment>
-      );
-    } else {
-      return <p key={color}>{color}</p>;
-    }
-  });
+  console.log(retailColors)
+  // const renderColors = retailColors.map((color, index) => {
+  //   if (index > dummyColors.length) {
+  //     return (
+  //       <React.Fragment key={color}>
+  //         <p>{color}</p>
+  //         <p> / </p>
+  //       </React.Fragment>
+  //     );
+  //   } else {
+  //     return <p key={color}>{color}</p>;
+  //   }
+  // });
 
   return (
     <ProductInfo>
@@ -55,6 +55,9 @@ const InfoSection = () => {
           Fit and Care
         </DetailsTab>
       </TabsWindow>
+      <Colors>
+        {/* {renderColors} */}
+      </Colors>
       <DetailsWindow>
         {detailsTab === "details" ? (
           <Details>
@@ -100,10 +103,6 @@ const InfoSection = () => {
           </Details>
         ) : null}
       </DetailsWindow>
-      <Colors>
-        <p>Colors:</p>
-        {renderColors}
-      </Colors>
     </ProductInfo>
   );
 };

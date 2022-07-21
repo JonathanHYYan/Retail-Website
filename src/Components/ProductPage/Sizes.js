@@ -3,8 +3,6 @@ import { Size, SizeContainer } from "./SizesStyling";
 const Sizes = (props) => {
   const { availableSizes, onClickSize, selectedState } = props;
 
-  // console.log(availableSizes);
-  // console.log(selectedState);
   return (
     <SizeContainer>
       <h1>Sizes</h1>

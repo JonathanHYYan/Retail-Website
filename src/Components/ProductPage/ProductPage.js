@@ -1,18 +1,19 @@
 import React, { useState, useEffect } from "react";
 import Carousel from "./Carousel";
 import {
-  BreadCrumb,
   Product,
-  ProductDetail,
   ProductRow,
   ProductSection,
   CaroselRow,
+  Specs,
 } from "./ProductPageStyling";
 import Sizes from "./Sizes";
 import Suppliers from "./Supplier";
 import Review from "./Review";
 import SuggestSection from "./SuggestSection";
 import InfoSection from "./ProductInfo";
+import ProductHeader from "./ProductHeader";
+import ProductColors from "./ProductColors";
 
 const vendors = ["Lifestyle", "footasylum", "Nike"];
 
@@ -20,8 +21,9 @@ const ProductPage = () => {
   const [productData, setProductData] = useState([]);
   const [availableSizes, setAvailableSizes] = useState([]);
   const [selectedSizes, setSelectedSizes] = useState([]);
-  const [lowestPrices, setLowestPrices] = useState([]);
   const [sizesByRetail, setSizesByRetail] = useState([]);
+  const [selectedColor, setSelectedColor] = useState(0);
+  const [retailColors, setRetailColors] = useState();
 
   useEffect(() => {
     getData();
@@ -29,10 +31,10 @@ const ProductPage = () => {
 
   useEffect(() => {
     if (productData.length) {
-      parseSizes(productData);
-      parsePrices(productData);
+      parseSizes();
+      setRetailColors(Object.values(productData[0].Text1));
     }
-  }, [productData]);
+  }, [productData, selectedColor]);
 
   const getData = async () => {
     const promises = vendors.map((vendor) => {
@@ -48,32 +50,23 @@ const ProductPage = () => {
     setProductData(products);
   };
 
-  const parseSizes = (data) => {
-    const dataSizes = data.map((object) => Object.values(object.Sizes));
-    const joinData = dataSizes.map((element) => element.join());
-    const mergeSizes = joinData.map((element) => element.split(/[, ]+/));
-    const concatSizes = mergeSizes.map((element) => element.filter(Boolean));
-    setSizesByRetail(concatSizes);
-    const filterSizes = concatSizes.map((element) => [...new Set(element)]);
-    const splitTotalSizes = eval(`[${filterSizes.join()}]`);
-    const filterTotalSizes = [...new Set(splitTotalSizes)];
-    const sortSizes = filterTotalSizes.sort();
+  const parseSizes = () => {
+    const dataSizes = productData.map((object) => Object.values(object.Sizes));
 
-    setAvailableSizes(sortSizes);
+    const retailerSizes = dataSizes.map(array => array[selectedColor]);
+    setSizesByRetail(retailerSizes);
+    const filterSizes = retailerSizes.join().split(/[, ]+/).filter(Boolean).sort();
+    const uniqueSizes = [...new Set(filterSizes)];
+
+    setAvailableSizes(uniqueSizes);
   };
 
-  const parsePrices = (data) => {
-    const dataPrices = data.map((object) => Object.values(object.Price));
-    const lowestPrices = dataPrices.map((priceArr) => priceArr.pop());
-
-    setLowestPrices(lowestPrices);
-  };
 
   const dataRetailers = productData.map((object) =>
     Object.values(object.Retailer).pop()
   );
 
-  const clickHandler = (index) => {
+  const onClickSize = (index) => {
     const selectedHolder = [...selectedSizes];
     const selectedSize = availableSizes[index];
     if (selectedHolder.includes(selectedSize)) {
@@ -81,6 +74,12 @@ const ProductPage = () => {
     } else {
       setSelectedSizes([...selectedHolder, selectedSize]);
     }
+  };
+
+  const onClickColor = (index) => {
+    if (selectedColor === index) return;
+    setSelectedColor(index);
+    setSelectedSizes([]);
   };
 
   const availbilityCheck = (vendorIndex) => {
@@ -96,34 +95,34 @@ const ProductPage = () => {
 
   return (
     <Product>
-      <BreadCrumb>
-        <p>Shoes</p>
-        <p>/</p>
-        <p>Nike</p>
-        <p>/</p>
-        <p>React Vision</p>
-        <p>/</p>
-        <p>DH4439-102</p>
-      </BreadCrumb>
-      <ProductDetail>
-        <h1>Nike React Vision</h1>
-        <p>DH4439-102</p>
-      </ProductDetail>
+      <ProductHeader />
       <ProductSection>
         <CaroselRow>
           <Carousel />
-          <Sizes
-            availableSizes={availableSizes}
-            selectedState={selectedSizes}
-            onClickSize={clickHandler}
-          />
+          <Specs>
+            <ProductColors
+              availableColors={retailColors}
+              selectedState={selectedColor}
+              onClickColor={onClickColor}
+            />
+            <Sizes
+              availableSizes={availableSizes}
+              selectedState={selectedSizes}
+              onClickSize={onClickSize}
+            />
+          </Specs>
         </CaroselRow>
         <ProductRow>
-          <InfoSection />
+          <InfoSection retailColors={retailColors}/>
           <Suppliers
             suppliers={dataRetailers}
-            prices={lowestPrices}
+            getSupplierPrice={(vendorIndex) =>
+              productData[vendorIndex].Price[selectedColor]
+            }
             availbilityCheck={availbilityCheck}
+            isOnSale={vendorIndex =>{
+              return productData[vendorIndex].Sale[selectedColor];
+            }}
           />
         </ProductRow>
         <ProductRow>

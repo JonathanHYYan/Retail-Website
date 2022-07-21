@@ -7,28 +7,9 @@ export const Product = styled.section`
   font-family: ${(props) => props.theme.mens.fontFamily};
 `;
 
-export const BreadCrumb = styled.div`
-  display: flex;
-  margin-top: 2rem;
-  p {
-    margin: 0.5rem 0.5rem 0.5rem 0;
-    font-size: 0.8em;
-    color: #3a3a3a;
-  }
-`;
 
-export const ProductDetail = styled.div`
-  font-size: 1.5em;
 
-  h1 {
-    margin: 1rem 0 0 0;
-  }
 
-  p {
-    margin: 0.5rem 0 1rem 0;
-    color: #3a3a3a;
-  }
-`;
 
 export const ProductSection = styled.div`
   width: 100%;
@@ -77,4 +58,16 @@ export const CustomerRating = styled.span`
   p {
     margin: 0.2rem;
   }
+`;
+
+export const Specs = styled.div`
+width:40%;
+display:flex;
+padding: 0 1rem;
+justify-content:center;
+flex-direction: column;
+
+@media(max-width: 1025px) {
+  width:100%;
+}
 `;

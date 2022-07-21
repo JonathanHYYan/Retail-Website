@@ -3,6 +3,8 @@ import styled from "styled-components";
 export const Colors = styled.div`
   display: flex;
   font-size: 0.8em;
+  margin: 1rem 0;
+
   p {
     margin: 0 0.3rem;
   }
@@ -14,7 +16,7 @@ export const Colors = styled.div`
 `;
 
 export const ProductInfo = styled.div`
-  width: 50%;
+  width: 60%;
   margin: 2rem auto;
   text-align: left;
   display: flex;

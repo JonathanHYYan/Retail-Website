@@ -3,10 +3,9 @@ import styled from "styled-components";
 let accentColor = (Props) => Props.theme.mens.accent;
 
 export const SizeContainer = styled.div`
-  width: 40%;
+  width: 100%;
   margin: auto;
   display: flex;
-  padding: 0 2rem 2rem 2rem;
   flex-wrap: wrap;
   justify-content: space-evenly;
 

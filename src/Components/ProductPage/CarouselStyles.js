@@ -1,9 +1,10 @@
 import styled from "styled-components";
 
 export const CarouselContainer = styled.div`
-  width: 50%;
+  width: 60%;
   display: flex;
   flex-direction:column;
+  justify-content:center;
 
   @media (max-width: 1024px) {
     width:85%
@@ -12,7 +13,7 @@ export const CarouselContainer = styled.div`
 
 export const ImgHolder = styled.div`
   width: 100%;
-  height: 25rem;
+  height: 30rem;
   display:flex;
   justify-content: center;
   align-items: center;

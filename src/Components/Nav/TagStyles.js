@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export const TagWindow = styled.div`
   display: flex;
-  align-items:center;
+  align-items: center;
 `;
 
 export const TagList = styled.div`
@@ -71,26 +71,26 @@ export const TLinkSell = styled(Link)`
   }
 `;
 
-
 export const TagScrollLeft = styled.div`
+  position: absolute;
+  left: 0.5%;
   display: flex;
   align-items: center;
   opacity: 0.5;
-  cursor:pointer;
-  padding: 0 0 0 1rem;
-  
+  cursor: pointer;
+
   :hover {
     opacity: 1;
   }
 `;
 export const TagScrollRight = styled.div`
+  position: absolute;
+  right: 0.5%;
   display: flex;
   align-items: center;
-  height:100%;
   opacity: 0.5;
-  cursor:pointer;
-  padding: 0 1rem 0 0;
-  
+  cursor: pointer;
+
   :hover {
     opacity: 1;
   }

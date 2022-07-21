@@ -50,9 +50,8 @@ export const MobileLink = styled(Link)`
 export const Search = styled.div`
   list-style-type: none;
   text-decoration: none;
-  margin: 0 1rem;
   color: black;
-  padding: 0.5em;
+  padding: 0.5rem 1rem 0.5rem 0;
 
   @media (max-width: 1024px) {
     display: none;

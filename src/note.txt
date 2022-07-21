@@ -1,11 +1,4 @@
 ########### IF TIME IS AVAILABLE ######################
-taglist styling to tag window figure out how to stop arrow clipping tag window
-
-title and breadcrumb can be a seperate component
-
-login and searchbar needs more space inbetween
-
-more margin on bottom of landing selection
 
 details color on top of text
 

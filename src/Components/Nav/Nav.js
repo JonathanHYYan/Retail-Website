@@ -35,6 +35,7 @@ const Nav = () => {
     transform: `rotate(${search ? 360 : 0}deg)`,
     transitionDuration: "0.4s",
     color: `${search ? "#dc0019" : "Grey"}`,
+    paddingRight: "1rem"
   };
 
   const navLinks = (
