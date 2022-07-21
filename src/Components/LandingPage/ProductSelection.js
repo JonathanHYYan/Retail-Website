@@ -9,20 +9,22 @@ const ProductSelection = () => {
   const [newStock, setNewStock] = useState([]);
 
   useEffect(() => {
+    if (!Demo.images) return;
+
     let popArr = [];
     let dealArr = [];
     let newArr = [];
-    if (Demo.images) {
-      Demo.images.map((image) => {
-        if (image.state === "popular") {
-          return popArr.push(image);
-        } else if (image.state === "best") {
-          return dealArr.push(image);
-        } else if (image.state === "new") {
-          return newArr.push(image);
-        }
-      });
-    }
+
+    Demo.images.map((image) => {
+      if (image.state === "popular") {
+        return popArr.push(image);
+      } else if (image.state === "best") {
+        return dealArr.push(image);
+      } else if (image.state === "new") {
+        return newArr.push(image);
+      }
+    });
+    
     setPopStock(popArr);
     setDealStock(dealArr);
     setNewStock(newArr);

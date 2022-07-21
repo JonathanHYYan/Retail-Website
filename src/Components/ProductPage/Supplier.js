@@ -3,18 +3,11 @@ import { Supplier, SupplierBox } from "./SupplierStyling";
 const Suppliers = (props) => {
   const { suppliers } = props;
   const { prices } = props;
-  const { available } = props;
+  const { availbilityCheck } = props;
 
   const renderSuppliers = suppliers.map((supplier, index) => {
-    const startUpHandler = (available,index) => {
-      // console.log(available)
-      if (available.length === 0) {
-        return (!available);
-      } else return !available[index];
-    };
-
     return (
-      <Supplier key={supplier} disabled={startUpHandler(available,index)}>
+      <Supplier key={supplier} disabled={!availbilityCheck(index)}>
         <h2>{supplier}</h2>
         <p>Starting at: {[prices[index]]}</p>
       </Supplier>

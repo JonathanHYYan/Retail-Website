@@ -1,5 +1,20 @@
 import styled from "styled-components";
 
+export const Reviews = styled.div`
+  width: 100%;
+  background-color: rgb(220, 220, 220, 0.7);
+`;
+export const Rating = styled.span`
+  display: flex;
+  align-items: center;
+  padding: 1.5rem 1rem;
+  border-top: 1px solid grey;
+  border-bottom: 1px solid grey;
+
+  p {
+    margin: 0.2rem;
+  }
+`;
 export const CustomerReviews = styled.div`
   width: 100%;
   display: flex;

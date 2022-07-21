@@ -1,8 +1,15 @@
-Search bar functionality
-
 ########### IF TIME IS AVAILABLE ######################
+taglist styling to tag window figure out how to stop arrow clipping tag window
 
-add grab and hold cursor styling for tag scrolling effect
+title and breadcrumb can be a seperate component
+
+login and searchbar needs more space inbetween
+
+more margin on bottom of landing selection
+
+details color on top of text
+
+add whitespace at bottom of each category in mobile to seperate sections add a little to the desktop version
 
 if time available add dots/dashes to show how many images available and which image is active and when you click on dot/dash it goes to image
 

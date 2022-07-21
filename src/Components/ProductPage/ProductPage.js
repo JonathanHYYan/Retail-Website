@@ -1,43 +1,26 @@
+import React, { useState, useEffect } from "react";
 import Carousel from "./Carousel";
 import {
   BreadCrumb,
   Product,
   ProductDetail,
   ProductRow,
-  ProductWindow,
-  ProductInfo,
-  Rating,
-  Reviews,
-  Colors,
-  DetailsWindow,
-  DetailsTab,
-  Details,
-  TabsWindow,
+  ProductSection,
   CaroselRow,
-  Suggested,
-  SuggestWindow,
 } from "./ProductPageStyling";
 import Sizes from "./Sizes";
 import Suppliers from "./Supplier";
-import { BsFillStarFill, BsStarHalf } from "react-icons/bs";
 import Review from "./Review";
-import React, { useState, useEffect } from "react";
-import { Demo } from "../../assets/DemoStock";
-import ProductCard from "../UI/Card";
-
-const dummyColors = ["Wolf Grey", "Cool Grey", "Pink Prime", "Black"];
+import SuggestSection from "./SuggestSection";
+import InfoSection from "./ProductInfo";
 
 const vendors = ["Lifestyle", "footasylum", "Nike"];
 
 const ProductPage = () => {
-  const [detailsTab, setDetailsTab] = useState("details");
-  const [productApi, setProductApi] = useState([]);
-  const [selectedState, setSelectedState] = useState([]);
+  const [productData, setProductData] = useState([]);
   const [availableSizes, setAvailableSizes] = useState([]);
   const [selectedSizes, setSelectedSizes] = useState([]);
   const [lowestPrices, setLowestPrices] = useState([]);
-  const [retailerNames, setRetailerNames] = useState([]);
-  const [availbility, setAvailbility] = useState([]);
   const [sizesByRetail, setSizesByRetail] = useState([]);
 
   useEffect(() => {
@@ -45,16 +28,11 @@ const ProductPage = () => {
   }, []);
 
   useEffect(() => {
-    if (productApi.length) {
-      parseSizes(productApi);
-      parsePrices(productApi);
-      parseRetailers(productApi);
+    if (productData.length) {
+      parseSizes(productData);
+      parsePrices(productData);
     }
-  }, [productApi]);
-
-  useEffect(() => {
-    availbilityCheck();
-  }, [selectedSizes]);
+  }, [productData]);
 
   const getData = async () => {
     const promises = vendors.map((vendor) => {
@@ -67,7 +45,7 @@ const ProductPage = () => {
     );
     const products = values.map((object, index) => Object.values(object)[0]);
 
-    setProductApi(products);
+    setProductData(products);
   };
 
   const parseSizes = (data) => {
@@ -82,78 +60,39 @@ const ProductPage = () => {
     const sortSizes = filterTotalSizes.sort();
 
     setAvailableSizes(sortSizes);
-    setSelectedState(sortSizes.map(() => false));
   };
 
   const parsePrices = (data) => {
     const dataPrices = data.map((object) => Object.values(object.Price));
     const lowestPrices = dataPrices.map((priceArr) => priceArr.pop());
+
     setLowestPrices(lowestPrices);
   };
 
-  const parseRetailers = (data) => {
-    const dataRetailers = data.map((object) =>
-      Object.values(object.Retailer).pop()
-    );
-    setRetailerNames(dataRetailers);
-  };
+  const dataRetailers = productData.map((object) =>
+    Object.values(object.Retailer).pop()
+  );
 
   const clickHandler = (index) => {
-    let selectedArr = [...selectedState];
-    selectedArr[index] = !selectedArr[index];
-    setSelectedState(selectedArr);
-
     const selectedHolder = [...selectedSizes];
-    if (selectedArr[index]) {
-      setSelectedSizes((current) => [...current, availableSizes[index]]);
-    } else if (!selectedArr[index]) {
-      setSelectedSizes(
-        selectedHolder.filter((size) => size !== availableSizes[index])
-      );
-    }
-  };
-
-  const availbilityCheck = () => {
-    if (sizesByRetail.length) {
-      const b1 = selectedSizes.map(String).map(num => sizesByRetail[0].includes(num)).every(bool => bool === true);
-      const b2 = selectedSizes.map(String).map(num => sizesByRetail[1].includes(num)).every(bool => bool === true);
-      const b3 = selectedSizes.map(String).map(num => sizesByRetail[2].includes(num)).every(bool => bool === true);
-
-      setAvailbility([b1, b2, b3]);
-    }
-  };
-
-  const generateCard = (product) => {
-    return (
-      <ProductCard
-        src={product.src}
-        caption={product.caption}
-        name={product.name}
-        type={product.type}
-        price={product.price}
-        key={product.id}
-      />
-    );
-  };
-
-  const renderColors = dummyColors.map((color, index) => {
-    if (index < dummyColors.length - 1) {
-      return (
-        <React.Fragment key={color}>
-          <p>{color}</p>
-          <p> / </p>
-        </React.Fragment>
-      );
+    const selectedSize = availableSizes[index];
+    if (selectedHolder.includes(selectedSize)) {
+      setSelectedSizes(selectedHolder.filter((size) => size !== selectedSize));
     } else {
-      return <p key={color}>{color}</p>;
+      setSelectedSizes([...selectedHolder, selectedSize]);
     }
-  });
+  };
 
-  const suggestArr = Demo.images.filter((image) => image.state === "suggest");
+  const availbilityCheck = (vendorIndex) => {
+    if (!selectedSizes.length) return true;
 
-  const suggestedStock = suggestArr.map((item) => {
-    return generateCard(item);
-  });
+    return selectedSizes
+      .map(String)
+      .map((num) => sizesByRetail[vendorIndex].includes(num))
+      .every((bool) => bool === true);
+  };
+
+  if (!availableSizes.length && dataRetailers.length) return null;
 
   return (
     <Product>
@@ -170,138 +109,28 @@ const ProductPage = () => {
         <h1>Nike React Vision</h1>
         <p>DH4439-102</p>
       </ProductDetail>
-      <ProductWindow>
+      <ProductSection>
         <CaroselRow>
           <Carousel />
-          {availableSizes.length ? (
-            <Sizes
-              availableSizes={availableSizes}
-              selectedState={selectedState}
-              onClickSize={clickHandler}
-            />
-          ) : null}
+          <Sizes
+            availableSizes={availableSizes}
+            selectedState={selectedSizes}
+            onClickSize={clickHandler}
+          />
         </CaroselRow>
         <ProductRow>
-          <ProductInfo>
-            <TabsWindow>
-              <DetailsTab
-                autoFocus
-                isSelected={detailsTab === "details" ? true : false}
-                onClick={() => {
-                  setDetailsTab("details");
-                }}
-              >
-                Details
-              </DetailsTab>
-              <p>|</p>
-              <DetailsTab
-                isSelected={detailsTab === "spec" ? true : false}
-                onClick={() => {
-                  setDetailsTab("spec");
-                }}
-              >
-                Specification
-              </DetailsTab>
-              <p>|</p>
-              <DetailsTab
-                isSelected={detailsTab === "fit" ? true : false}
-                onClick={() => {
-                  setDetailsTab("fit");
-                }}
-              >
-                Fit and Care
-              </DetailsTab>
-            </TabsWindow>
-            <DetailsWindow>
-              {detailsTab === "details" ? (
-                <Details>
-                  <div>
-                    <p>
-                      From the D/MS/X collection comes a story of surreal
-                      comfort. Layered textures, intricate lines and vivid
-                      colours combine in a design influenced by the exaggerated
-                      world of our dreams. The React foam and an ultra-plush
-                      tongue provide dreamlike comfort. Step into your dream—the
-                      Nike React Vision.
-                    </p>
-                  </div>
-                </Details>
-              ) : null}
-              {detailsTab === "spec" ? (
-                <Details>
-                  <ul>
-                    <li>
-                      The padded, low-cut collar looks sleek and feels great
-                    </li>
-                    <li>Pull tabs at heel and tongue for easy on and off</li>
-                    <li>Colour Shown: Wolf Grey/Cool Grey/Pink Prime/Black</li>
-                    <li>Style: CI7523-009</li>
-                  </ul>
-                </Details>
-              ) : null}
-              {detailsTab === "fit" ? (
-                <Details>
-                  <ul>
-                    <li>
-                      Micro-detailing, exaggerated proportions and
-                      multi-textured aesthetic give this shoe a unique
-                      appearance. The airy upper features all-over mesh.
-                    </li>
-                    <li>
-                      The Nike React foam midsole with soft rubber detailing
-                      delivers unrivalled, all-day comfort. The ultra-plush
-                      tongue provides additional cushioning.
-                    </li>
-                    <li>
-                      The TPU heel clip creates a sporty look, refreshes your
-                      heritage styling and adds stability.
-                    </li>
-                  </ul>
-                </Details>
-              ) : null}
-            </DetailsWindow>
-            <Colors>
-              <p>Colors:</p>
-              {renderColors}
-            </Colors>
-          </ProductInfo>
-          {retailerNames.length ? (
-            <Suppliers
-              suppliers={retailerNames}
-              prices={lowestPrices}
-              available={availbility}
-            />
-          ) : null}
+          <InfoSection />
+          <Suppliers
+            suppliers={dataRetailers}
+            prices={lowestPrices}
+            availbilityCheck={availbilityCheck}
+          />
         </ProductRow>
         <ProductRow>
-          <Reviews>
-            <Rating>
-              <p>
-                <BsFillStarFill />
-              </p>
-              <p>
-                <BsFillStarFill />
-              </p>
-              <p>
-                <BsFillStarFill />
-              </p>
-              <p>
-                <BsFillStarFill />
-              </p>
-              <p>
-                <BsStarHalf />
-              </p>
-              <p>/</p>
-              <p>62 Reviews</p>
-            </Rating>
-            <Review />
-          </Reviews>
+          <Review />
         </ProductRow>
-      </ProductWindow>
-      <SuggestWindow>
-        <h1>You Might Also Like</h1>
-        <Suggested>{suggestedStock}</Suggested>
-      </SuggestWindow>
+      </ProductSection>
+      <SuggestSection />
     </Product>
   );
 };

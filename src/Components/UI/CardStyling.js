@@ -4,8 +4,11 @@ export const Card = styled.div`
   width: 18%;
   margin: 0 2rem;
 
-  @media (max-width: 426px) {
-    margin:0;
+  @media (max-width: 524px) {
+    width: 33%;
+  }
+
+  @media (max-width: 471px) {
     width: 60%;
   }
 `;

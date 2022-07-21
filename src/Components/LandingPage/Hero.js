@@ -8,7 +8,7 @@ import {
 const Hero = () => {
   return (
     <>
-      <HeroBG></HeroBG>
+      <HeroBG/>
       <HeroText>
         <h1>Nike React Vision</h1>
         <SLink to="/productpage">

@@ -1,4 +1,11 @@
-import { TagList, TagScroll, TagWindow, TLink, TLinkSell } from "./TagStyles";
+import {
+  TagList,
+  TagScrollLeft,
+  TagScrollRight,
+  TagWindow,
+  TLink,
+  TLinkSell,
+} from "./TagStyles";
 import { useState, useRef } from "react";
 import { BsChevronDoubleLeft, BsChevronDoubleRight } from "react-icons/bs";
 
@@ -43,9 +50,9 @@ const Tag = () => {
 
   return (
     <TagWindow>
-      <TagScroll onClick={leftScroll}>
+      <TagScrollLeft onClick={leftScroll}>
         <BsChevronDoubleLeft />
-      </TagScroll>
+      </TagScrollLeft>
       <TagList
         ref={slider}
         onMouseDown={onMouseDown}
@@ -65,16 +72,16 @@ const Tag = () => {
         <TLink to="">Yeezy Slides</TLink>
         <TLink to="">Dunk High</TLink>
         <TLink to="">Yeezy 700</TLink>
-        <TLink to="">Tag A</TLink>
-        <TLink to="">Tag B</TLink>
-        <TLink to="">Tag C</TLink>
-        <TLink to="">Tag D</TLink>
-        <TLink to="">Tag E</TLink>
-        <TLink to="">Tag F</TLink>
+        <TLink to="">Reebok A</TLink>
+        <TLink to="">Reebok B</TLink>
+        <TLink to="">Reebok C</TLink>
+        <TLink to="">Reebok D</TLink>
+        <TLink to="">Reebok E</TLink>
+        <TLink to="">Reebok F</TLink>
       </TagList>
-      <TagScroll onClick={rightScroll}>
+      <TagScrollRight onClick={rightScroll}>
         <BsChevronDoubleRight />
-      </TagScroll>
+      </TagScrollRight>
     </TagWindow>
   );
 };

@@ -6,7 +6,11 @@ import {
   NLink,
   NIcon,
   DropLinks,
-  DLink,
+  MobileInput,
+  MobileLink,
+  SearchInput,
+  Search,
+  MobileSearch,
 } from "./NavStyles";
 import WhiteLogo from "../../assets/WhiteLogo.png";
 import { BsSearch } from "react-icons/bs";
@@ -17,9 +21,20 @@ import { useState } from "react";
 
 const Nav = () => {
   const [open, setOpen] = useState(false);
+  const [search, setSearch] = useState(false);
 
   const dropNav = () => {
     setOpen(!open);
+  };
+
+  const searchToggle = () => {
+    setSearch(!search);
+  };
+
+  const searchSpin = {
+    transform: `rotate(${search ? 360 : 0}deg)`,
+    transitionDuration: "0.4s",
+    color: `${search ? "#dc0019" : "Grey"}`,
   };
 
   const navLinks = (
@@ -30,22 +45,22 @@ const Nav = () => {
       <NLink to="">Best Sellers</NLink>
       <NLink to="">Browse</NLink>
       <NLink to="">Sell</NLink>
-      <NLink to="">Log In</NLink>
     </>
   );
 
-  const dropLinks = (
+  const MobileLinks = (
     <>
-      <DLink to="">New Releases</DLink>
-      <DLink to="">Women</DLink>
-      <DLink to="">Men</DLink>
-      <DLink to="">Best Sellers</DLink>
-      <DLink to="">Browse</DLink>
-      <DLink to="">Sell</DLink>
-      <DLink to="">Log In</DLink>
-      <DLink to="">
-        <BsSearch style={{ fontSize: "1em" }} />
-      </DLink>
+      <MobileLink to="">New Releases</MobileLink>
+      <MobileLink to="">Women</MobileLink>
+      <MobileLink to="">Men</MobileLink>
+      <MobileLink to="">Best Sellers</MobileLink>
+      <MobileLink to="">Browse</MobileLink>
+      <MobileLink to="">Sell</MobileLink>
+      <MobileLink to="">Log In</MobileLink>
+      <MobileSearch to="">
+        <MobileInput search={search} style={searchSpin} />
+        <BsSearch style={searchSpin} onClick={searchToggle} />
+      </MobileSearch>
     </>
   );
 
@@ -57,14 +72,16 @@ const Nav = () => {
         </LLink>
         <ScrollToTop />
         <NavLinks>{navLinks}</NavLinks>
-        <NLink to="">
-          <BsSearch style={{ fontSize: "1em" }} />
-        </NLink>
+        <Search>
+          <SearchInput search={search} />
+          <BsSearch style={searchSpin} onClick={searchToggle} />
+          <NLink to="">Log In</NLink>
+        </Search>
         <NIcon onClick={dropNav}>
-          <AiOutlineMenu style={{ color: "white" }}/>
+          <AiOutlineMenu style={{ color: "white" }} />
         </NIcon>
       </NavBar>
-      {open && <DropLinks>{dropLinks}</DropLinks>}
+      {open && <DropLinks>{MobileLinks}</DropLinks>}
       <Tag />
     </>
   );

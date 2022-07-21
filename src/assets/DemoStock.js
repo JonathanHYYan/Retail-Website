@@ -92,7 +92,7 @@ export const Demo = {
           src: shoe2,
           name: "Nike Metcon 8",
           type: "Men's Training Shoes",
-          state: "best",
+          state: "popular",
           caption: "shoe2",
           gender: "male",
           price: 114.95,

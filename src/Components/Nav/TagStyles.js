@@ -1,8 +1,13 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
+export const TagWindow = styled.div`
+  display: flex;
+  align-items:center;
+`;
+
 export const TagList = styled.div`
-  cursor: pointer;
+  cursor: grabbing;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -20,7 +25,7 @@ export const TLink = styled(Link)`
   cursor: pointer;
   list-style-type: none;
   text-decoration: none;
-  margin: 0 1rem;
+  margin: 0 0.5rem;
   border: 1px solid transparent;
   box-shadow: 1px 1px 2px 0 grey;
   padding: 0.5rem 1rem;
@@ -65,16 +70,26 @@ export const TLinkSell = styled(Link)`
     box-shadow: none;
   }
 `;
-export const TagWindow = styled.div`
-  display: flex;
-  align-items:center;
-`;
 
-export const TagScroll = styled.div`
+
+export const TagScrollLeft = styled.div`
   display: flex;
   align-items: center;
   opacity: 0.5;
   cursor:pointer;
+  padding: 0 0 0 1rem;
+  
+  :hover {
+    opacity: 1;
+  }
+`;
+export const TagScrollRight = styled.div`
+  display: flex;
+  align-items: center;
+  height:100%;
+  opacity: 0.5;
+  cursor:pointer;
+  padding: 0 1rem 0 0;
   
   :hover {
     opacity: 1;

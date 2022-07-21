@@ -7,10 +7,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ScrollToTop from "./Components/UI/ScrollToTop";
 
 const theme = {
-  womens: {
-    fontFamily: "Helvetica",
-    accent: "#dc0019",
-  },
   mens: {
     fontFamily: "Helvetica",
     accent: "#dc0019",

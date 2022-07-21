@@ -1,6 +1,8 @@
 import {
   CustomerReviews,
+  Rating,
   Recommends,
+  Reviews,
   ReviewBoxes,
   ReviewButton,
   ReviewWindow,
@@ -79,11 +81,32 @@ const Review = () => {
   };
 
   return (
-    <CustomerReviews >
-      <h1>Reviews</h1>
-      <RiArrowDownSLine size={42} onClick={dropHandler} style={arrowStyles} />
-      {reviewDrop && customerReviews}
-    </CustomerReviews>
+    <Reviews>
+      <Rating>
+        <p>
+          <BsFillStarFill />
+        </p>
+        <p>
+          <BsFillStarFill />
+        </p>
+        <p>
+          <BsFillStarFill />
+        </p>
+        <p>
+          <BsFillStarFill />
+        </p>
+        <p>
+          <BsStarHalf />
+        </p>
+        <p>/</p>
+        <p>62 Reviews</p>
+      </Rating>
+      <CustomerReviews>
+        <h1>Reviews</h1>
+        <RiArrowDownSLine size={42} onClick={dropHandler} style={arrowStyles} />
+        {reviewDrop && customerReviews}
+      </CustomerReviews>
+    </Reviews>
   );
 };
 

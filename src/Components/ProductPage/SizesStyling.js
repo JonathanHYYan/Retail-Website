@@ -47,6 +47,10 @@ export const Size = styled.button`
     margin: 0.1rem;
   }
 
+  @media (max-width: 524px) {
+   margin:0;
+  }
+
   :select {
     border: 1px solid black;
   }
