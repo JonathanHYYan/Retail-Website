@@ -31,7 +31,7 @@ export const Category = styled.div`
   justify-content: flex-start;
   margin:auto;
 
-  @media(max-width:960px){
-    justify-content: space-evenly;
+  @media(max-width:426px){
+    justify-content:center;
   }
 `;

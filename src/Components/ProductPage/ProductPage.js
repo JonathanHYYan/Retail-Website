@@ -15,6 +15,7 @@ import {
   TabsWindow,
   CaroselRow,
   Suggested,
+  SuggestWindow,
 } from "./ProductPageStyling";
 import Sizes from "./Sizes";
 import Suppliers from "./Supplier";
@@ -33,8 +34,11 @@ const ProductPage = () => {
   const [productApi, setProductApi] = useState([]);
   const [selectedState, setSelectedState] = useState([]);
   const [availableSizes, setAvailableSizes] = useState([]);
-  const [suppliers, setSuppliers] = useState([]);
   const [selectedSizes, setSelectedSizes] = useState([]);
+  const [lowestPrices, setLowestPrices] = useState([]);
+  const [retailerNames, setRetailerNames] = useState([]);
+  const [availbility, setAvailbility] = useState([]);
+  const [sizesByRetail, setSizesByRetail] = useState([]);
 
   useEffect(() => {
     getData();
@@ -42,10 +46,15 @@ const ProductPage = () => {
 
   useEffect(() => {
     if (productApi.length) {
-      loadSizes(productApi);
-      loadSuppliers(productApi);
+      parseSizes(productApi);
+      parsePrices(productApi);
+      parseRetailers(productApi);
     }
   }, [productApi]);
+
+  useEffect(() => {
+    availbilityCheck();
+  }, [selectedSizes]);
 
   const getData = async () => {
     const promises = vendors.map((vendor) => {
@@ -61,14 +70,32 @@ const ProductPage = () => {
     setProductApi(products);
   };
 
-  const loadSizes = (data) => {
+  const parseSizes = (data) => {
     const dataSizes = data.map((object) => Object.values(object.Sizes));
-    const concatSizesArr = [].concat.apply([], dataSizes);
-    const mergeSizes = concatSizesArr.map((element) => element.split(/[, ]+/));
-    const concatSizes = [].concat.apply([], mergeSizes).filter(Boolean);
-    const filterSizes = [...new Set(concatSizes)];
-    setAvailableSizes(filterSizes);
-    setSelectedState(filterSizes.map(() => false));
+    const joinData = dataSizes.map((element) => element.join());
+    const mergeSizes = joinData.map((element) => element.split(/[, ]+/));
+    const concatSizes = mergeSizes.map((element) => element.filter(Boolean));
+    setSizesByRetail(concatSizes);
+    const filterSizes = concatSizes.map((element) => [...new Set(element)]);
+    const splitTotalSizes = eval(`[${filterSizes.join()}]`);
+    const filterTotalSizes = [...new Set(splitTotalSizes)];
+    const sortSizes = filterTotalSizes.sort();
+
+    setAvailableSizes(sortSizes);
+    setSelectedState(sortSizes.map(() => false));
+  };
+
+  const parsePrices = (data) => {
+    const dataPrices = data.map((object) => Object.values(object.Price));
+    const lowestPrices = dataPrices.map((priceArr) => priceArr.pop());
+    setLowestPrices(lowestPrices);
+  };
+
+  const parseRetailers = (data) => {
+    const dataRetailers = data.map((object) =>
+      Object.values(object.Retailer).pop()
+    );
+    setRetailerNames(dataRetailers);
   };
 
   const clickHandler = (index) => {
@@ -77,27 +104,24 @@ const ProductPage = () => {
     setSelectedState(selectedArr);
 
     const selectedHolder = [...selectedSizes];
-    if(selectedArr[index]){
-      console.log(availableSizes[index]);
-      setSelectedSizes(current => [...current, availableSizes[index]]);
-    } else if (!selectedArr[index]){
-      setSelectedSizes(selectedHolder.filter(size => size !== availableSizes[index]));
+    if (selectedArr[index]) {
+      setSelectedSizes((current) => [...current, availableSizes[index]]);
+    } else if (!selectedArr[index]) {
+      setSelectedSizes(
+        selectedHolder.filter((size) => size !== availableSizes[index])
+      );
     }
   };
+  
+  const availbilityCheck = () => {
+    const boolHolder = sizesByRetail.map((sizeArray) =>
+      sizeArray.some((nums) => nums.includes(String(selectedSizes)))
+    );
 
-  console.log(selectedSizes);
-
-  const loadSuppliers = (data) => {
-    const supplierData = data.map((object) => Object.values(object.Retailer));
-    const filterSupplier = supplierData.map((array) => [...new Set(array)]);
-    const mergeSupplier = [].concat.apply([], filterSupplier);
-
-    if(selectedState.every(bool => bool === true)){
-      setSuppliers(mergeSupplier);
-    } else {
-
-    }
+    setAvailbility(boolHolder);
   };
+
+  console.log(availbility);
 
   const generateCard = (product) => {
     return (
@@ -169,6 +193,7 @@ const ProductPage = () => {
               >
                 Details
               </DetailsTab>
+              <p>|</p>
               <DetailsTab
                 isSelected={detailsTab === "spec" ? true : false}
                 onClick={() => {
@@ -177,6 +202,7 @@ const ProductPage = () => {
               >
                 Specification
               </DetailsTab>
+              <p>|</p>
               <DetailsTab
                 isSelected={detailsTab === "fit" ? true : false}
                 onClick={() => {
@@ -239,7 +265,13 @@ const ProductPage = () => {
               {renderColors}
             </Colors>
           </ProductInfo>
-          {suppliers.length ? <Suppliers suppliers={suppliers} /> : null}
+          {retailerNames.length ? (
+            <Suppliers
+              suppliers={retailerNames}
+              prices={lowestPrices}
+              available={availbility}
+            />
+          ) : null}
         </ProductRow>
         <ProductRow>
           <Reviews>
@@ -266,10 +298,10 @@ const ProductPage = () => {
           </Reviews>
         </ProductRow>
       </ProductWindow>
-      <ProductWindow>
+      <SuggestWindow>
         <h1>You Might Also Like</h1>
         <Suggested>{suggestedStock}</Suggested>
-      </ProductWindow>
+      </SuggestWindow>
     </Product>
   );
 };

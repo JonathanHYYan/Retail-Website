@@ -10,7 +10,7 @@ const Sizes = (props) => {
       {availableSizes.map((size, index) => {
         return (
           <Size
-            key={size}
+            key={`${size}-${index}`}
             onClick={() => {
               onClickSize(index);
             }}

@@ -5,8 +5,6 @@ make it look like showroom available at
 
 Search bar functionality
 
-images should be smaller as the window size decreases not bigger
-
 ########### IF TIME IS AVAILABLE ######################
 
 add grab and hold cursor styling for tag scrolling effect

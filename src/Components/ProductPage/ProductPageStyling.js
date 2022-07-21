@@ -35,6 +35,16 @@ export const ProductWindow = styled.div`
   flex-direction: column;
   justify-content: space-between;
 `;
+export const SuggestWindow = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  @media(max-width: 426px) {
+    text-align:center;
+  }
+`;
 
 export const CaroselRow = styled.div`
   width: 100%;
@@ -55,7 +65,7 @@ export const ProductRow = styled.div`
   padding: 1rem 0;
 
   @media (max-width: 768px) {
-    flex-direction: column;
+    flex-direction: column-reverse;
     padding: 0;
   }
 `;
@@ -67,6 +77,7 @@ export const ProductInfo = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-evenly;
 
   @media (max-width: 768px) {
     width: 80%;
@@ -83,12 +94,9 @@ export const DetailsWindow = styled.div`
   margin-bottom: 1rem;
   display: flex;
   justify-content: center;
+  width: 80%;
   @media (max-width: 1024px) {
     width: 100%;
-  }
-
-  @media (max-width: 768px) {
-    width: 80%;
   }
 `;
 
@@ -108,12 +116,6 @@ export const DetailsTab = styled.button`
   :hover {
     opacity: 1;
   }
-
-  :nth-child(2) {
-    padding: 0 5%;
-    border-left: 1px solid black;
-    border-right: 1px solid black;
-  }
 `;
 
 export const Details = styled.div`
@@ -130,7 +132,6 @@ export const Details = styled.div`
     margin-top: 0.5rem;
   }
   ul {
-    width: 85%;
     margin-top: 0.5rem;
     list-style-position: outside;
   }
@@ -179,11 +180,11 @@ export const Suggested = styled.div`
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-start;
   margin: auto;
 
-  @media (max-width: 960px) {
-    justify-content: space-evenly;
+  @media (max-width: 426px) {
+    justify-content: center;
   }
 `;
 
