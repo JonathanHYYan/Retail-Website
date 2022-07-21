@@ -7,7 +7,7 @@ import {
   TLinkSell,
 } from "./TagStyles";
 import { useState, useRef } from "react";
-import {FaChevronCircleRight, FaChevronCircleLeft} from "react-icons/fa"
+import { BsChevronDoubleLeft, BsChevronDoubleRight } from "react-icons/bs";
 
 const Tag = () => {
   const [isScrolling, setIsScrolling] = useState(false);
@@ -50,6 +50,9 @@ const Tag = () => {
 
   return (
     <TagWindow>
+      <TagScrollLeft onClick={leftScroll}>
+        <BsChevronDoubleLeft />
+      </TagScrollLeft>
       <TagList
         ref={slider}
         onMouseDown={onMouseDown}
@@ -57,9 +60,6 @@ const Tag = () => {
         onMouseMove={onMouseMove}
         onMouseLeave={onMouseLeave}
       >
-        <TagScrollLeft onClick={leftScroll}>
-          <FaChevronCircleLeft />
-        </TagScrollLeft>
         <TLinkSell to="">Sell Item</TLinkSell>
         <p>OR</p>
         <TLink to="">Air Jordan 1</TLink>
@@ -78,10 +78,10 @@ const Tag = () => {
         <TLink to="">Reebok D</TLink>
         <TLink to="">Reebok E</TLink>
         <TLink to="">Reebok F</TLink>
-        <TagScrollRight onClick={rightScroll}>
-          <FaChevronCircleRight />
-        </TagScrollRight>
       </TagList>
+      <TagScrollRight onClick={rightScroll}>
+        <BsChevronDoubleRight />
+      </TagScrollRight>
     </TagWindow>
   );
 };

@@ -20,18 +20,21 @@ const imageHolder = [shoe1, shoe2, shoe3, shoe4, shoe5, shoe6, shoe7, shoe8];
 
 const Carousel = () => {
   const [imgIndex, setImgIndex] = useState(0);
-  const length = imageHolder.length;
+  const length = imageHolder.length - 1;
 
-  const renderImgs = imageHolder.map((image, index) => index === imgIndex && <Img key={image} src={image} alt={`shoe-${index}`} />
-  
+  const renderImgs = imageHolder.map(
+    (image, index) =>
+      index === imgIndex && (
+        <Img key={image} src={image} alt={`shoe-${index}`} />
+      )
   );
 
   const leftHandler = () => {
-    setImgIndex(imgIndex === 0 ? length - 1 : imgIndex - 1);
+    setImgIndex(imgIndex === 0 ? length : imgIndex - 1);
   };
 
   const rightHandler = () => {
-    setImgIndex(imgIndex === length - 1 ? 0 : imgIndex + 1);
+    setImgIndex(imgIndex === length ? 0 : imgIndex + 1);
   };
 
   return (

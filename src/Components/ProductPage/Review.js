@@ -27,34 +27,34 @@ const Review = () => {
     <ReviewWindow>
       <ReviewBoxes>
         <User>
-          <p>Anonymous</p>
-          <p>
+          <div>Anonymous</div>
+          <div>
             Reviews: <span>1</span>
-          </p>
-          <p>
+          </div>
+          <div>
             Athelete type: <span>Casual</span>
-          </p>
+          </div>
         </User>
         <UserReview>
           <IconContext.Provider value={{ color: `#dc0019` }}>
             <CustomerRating>
-              <p>
+              <div>
                 <BsFillStarFill />
-              </p>
-              <p>
+              </div>
+              <div>
                 <BsFillStarFill />
-              </p>
-              <p>
+              </div>
+              <div>
                 <BsFillStarFill />
-              </p>
-              <p>
+              </div>
+              <div>
                 <BsFillStarFill />
-              </p>
-              <p>
+              </div>
+              <div>
                 <BsStarHalf />
-              </p>
-              <p>/</p>
-              <p>a months ago</p>
+              </div>
+              <div>/</div>
+              <div>a months ago</div>
             </CustomerRating>
           </IconContext.Provider>
           <p>
@@ -63,7 +63,7 @@ const Review = () => {
           </p>
           <Recommends>
             <p>
-              Recommends this product{" "}
+              Recommends this product
               <TiTick size={20} style={{ color: "green" }} />
             </p>
           </Recommends>

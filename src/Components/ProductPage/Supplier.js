@@ -7,7 +7,7 @@ const Suppliers = (props) => {
   const { availbilityCheck } = props;
   const { isOnSale } = props;
 
-  const renderSuppliers = suppliers.map((supplier, index) => {
+  const renderSuppliers = () => suppliers.map((supplier, index) => {
     return (
       <Supplier key={supplier} disabled={!availbilityCheck(index)}>
         <h2>{supplier}</h2>
@@ -25,7 +25,7 @@ const Suppliers = (props) => {
   return (
     <SupplierSection>
       <h1>Available From</h1>
-      {renderSuppliers}
+      {renderSuppliers()}
     </SupplierSection>
   );
 };

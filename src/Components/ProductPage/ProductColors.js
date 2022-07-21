@@ -5,25 +5,24 @@ import {
 } from "./ProductColorsStyling";
 
 const ProductColors = ({ availableColors, onClickColor, selectedState }) => {
-  if (!availableColors) return;
-  
-  const colorAvailable = availableColors.map((color, index) => {
-    return (
-      <ColorButton
-        key={color}
-        onClick={() => {
-          onClickColor(index);
-        }}
-        isSelected={selectedState === index}
-      >
-        <p>{color}</p>
-      </ColorButton>
-    );
-  });
+  const renderColors = () =>
+    availableColors.map((color, index) => {
+      return (
+        <ColorButton
+          key={color}
+          onClick={() => onClickColor(index)}
+          isSelected={selectedState === index}
+        >
+          <p>{color}</p>
+        </ColorButton>
+      );
+    });
+
+  if (!availableColors) return null;
 
   return (
     <ColorSection>
-      <AvailableColors>{colorAvailable}</AvailableColors>
+      <AvailableColors>{renderColors()}</AvailableColors>
     </ColorSection>
   );
 };

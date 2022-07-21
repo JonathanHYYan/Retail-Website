@@ -42,7 +42,7 @@ export const ReviewBoxes = styled.div`
 export const User = styled.div`
   width: 30%;
 
-  p {
+  div {
     font-weight: bold;
   }
 

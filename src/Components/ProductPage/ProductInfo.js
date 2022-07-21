@@ -8,56 +8,48 @@ import {
 } from "./ProductInfoStyling";
 import React, { useState } from "react";
 
-const dummyColors = ["Wolf Grey", "Cool Grey", "Pink Prime", "Black"];
-
-const InfoSection = ({retailColors}) => {
+const InfoSection = ({ retailColors }) => {
   const [detailsTab, setDetailsTab] = useState("details");
-  console.log(retailColors)
-  // const renderColors = retailColors.map((color, index) => {
-  //   if (index > dummyColors.length) {
-  //     return (
-  //       <React.Fragment key={color}>
-  //         <p>{color}</p>
-  //         <p> / </p>
-  //       </React.Fragment>
-  //     );
-  //   } else {
-  //     return <p key={color}>{color}</p>;
-  //   }
-  // });
+  const renderColors = () =>
+    retailColors.map((color, index) => {
+      if (index < retailColors.length - 1) {
+        return (
+          <React.Fragment key={color}>
+            <p>{color}</p>
+            <p> / </p>
+          </React.Fragment>
+        );
+      } else {
+        return <p key={color}>{color}</p>;
+      }
+    });
+
+  if (!retailColors.length) return null;
 
   return (
     <ProductInfo>
       <TabsWindow>
         <DetailsTab
           autoFocus
-          isSelected={detailsTab === "details" ? true : false}
-          onClick={() => {
-            setDetailsTab("details");
-          }}
+          isSelected={detailsTab === "details"}
+          onClick={() => setDetailsTab("details")}
         >
           Details
         </DetailsTab>
         <DetailsTab
-          isSelected={detailsTab === "spec" ? true : false}
-          onClick={() => {
-            setDetailsTab("spec");
-          }}
+          isSelected={detailsTab === "spec"}
+          onClick={() => setDetailsTab("spec")}
         >
           Specification
         </DetailsTab>
         <DetailsTab
-          isSelected={detailsTab === "fit" ? true : false}
-          onClick={() => {
-            setDetailsTab("fit");
-          }}
+          isSelected={detailsTab === "fit"}
+          onClick={() => setDetailsTab("fit")}
         >
           Fit and Care
         </DetailsTab>
       </TabsWindow>
-      <Colors>
-        {/* {renderColors} */}
-      </Colors>
+      <Colors>{renderColors()}</Colors>
       <DetailsWindow>
         {detailsTab === "details" ? (
           <Details>

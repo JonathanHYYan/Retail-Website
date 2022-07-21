@@ -1,11 +1,8 @@
-########### IF TIME IS AVAILABLE ######################
+### Notes for Live View ###
 
-details color on top of text
+Work around for "no-cor" error in fetch requests
 
-add whitespace at bottom of each category in mobile to seperate sections add a little to the desktop version
-
-if time available add dots/dashes to show how many images available and which image is active and when you click on dot/dash it goes to image
-
-FIRST:cd C:\Program Files\Google\Chrome\Application
+FIRST:  cd C:\Program Files\Google\Chrome\Application
 SECOND: chrome.exe --user-data-dir="C:/Chrome dev session" --disable-web-security
+
 DONT USE BROWSER FOR ANYTHING ELSE!!!!

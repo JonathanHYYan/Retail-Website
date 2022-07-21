@@ -23,7 +23,7 @@ const ProductPage = () => {
   const [selectedSizes, setSelectedSizes] = useState([]);
   const [sizesByRetail, setSizesByRetail] = useState([]);
   const [selectedColor, setSelectedColor] = useState(0);
-  const [retailColors, setRetailColors] = useState();
+  const retailColors = productData.length ? Object.values(productData[0].Text1) : [];
 
   useEffect(() => {
     getData();
@@ -32,7 +32,6 @@ const ProductPage = () => {
   useEffect(() => {
     if (productData.length) {
       parseSizes();
-      setRetailColors(Object.values(productData[0].Text1));
     }
   }, [productData, selectedColor]);
 
@@ -61,18 +60,12 @@ const ProductPage = () => {
     setAvailableSizes(uniqueSizes);
   };
 
-
-  const dataRetailers = productData.map((object) =>
-    Object.values(object.Retailer).pop()
-  );
-
   const onClickSize = (index) => {
-    const selectedHolder = [...selectedSizes];
     const selectedSize = availableSizes[index];
-    if (selectedHolder.includes(selectedSize)) {
-      setSelectedSizes(selectedHolder.filter((size) => size !== selectedSize));
+    if (selectedSizes.includes(selectedSize)) {
+      setSelectedSizes([...selectedSizes.filter((size) => size !== selectedSize)]);
     } else {
-      setSelectedSizes([...selectedHolder, selectedSize]);
+      setSelectedSizes([...selectedSizes, selectedSize]);
     }
   };
 
@@ -91,7 +84,7 @@ const ProductPage = () => {
       .every((bool) => bool === true);
   };
 
-  if (!availableSizes.length && dataRetailers.length) return null;
+  if (!productData.length) return null;
 
   return (
     <Product>
@@ -115,14 +108,14 @@ const ProductPage = () => {
         <ProductRow>
           <InfoSection retailColors={retailColors}/>
           <Suppliers
-            suppliers={dataRetailers}
+            suppliers={productData.map((object) =>
+              Object.values(object.Retailer).pop()
+            )}
             getSupplierPrice={(vendorIndex) =>
               productData[vendorIndex].Price[selectedColor]
             }
             availbilityCheck={availbilityCheck}
-            isOnSale={vendorIndex =>{
-              return productData[vendorIndex].Sale[selectedColor];
-            }}
+            isOnSale={vendorIndex => productData[vendorIndex].Sale[selectedColor]}
           />
         </ProductRow>
         <ProductRow>

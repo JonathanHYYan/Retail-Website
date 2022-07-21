@@ -21,11 +21,10 @@ export const SignUp = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
- 
 
-  @media(max-width: 768px){
-    width:70%;
-    align-items:center;
+  @media (max-width: 768px) {
+    width: 70%;
+    align-items: center;
   }
 
   p {
@@ -39,7 +38,7 @@ export const SignUp = styled.div`
 
   h2 {
     text-transform: uppercase;
-    font-size: 1 em;
+    font-size: 1em;
 
     @media (max-width: 1024px) {
       font-size: 0.9em;
@@ -51,6 +50,7 @@ export const H2 = styled.div`
   display: flex;
   align-items: center;
 `;
+
 export const Form = styled.form``;
 
 export const Input = styled.input`
@@ -174,7 +174,7 @@ export const Policy = styled.div`
   font-family: ${(props) => props.theme.mens.fontFamily};
 
   @media (max-width: 768px) {
-    font-size:0.5em;
+    font-size: 0.5em;
   }
 
   p {
@@ -184,6 +184,4 @@ export const Policy = styled.div`
       padding: 0 0.5rem;
     }
   }
-
-
 `;

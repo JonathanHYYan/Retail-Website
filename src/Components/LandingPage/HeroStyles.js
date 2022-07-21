@@ -20,7 +20,6 @@ export const HeroText = styled.div`
   color: black;
   text-align: center;
   font-size: 2em;
-  font-weight: 2000;
   font-family: ${(props) => props.theme.mens.fontFamily};
   background-color: rgb(220, 220, 220, 0.45);
 

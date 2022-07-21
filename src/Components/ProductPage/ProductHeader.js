@@ -1,4 +1,3 @@
-import ProductColors from "./ProductColors";
 import {
   BreadCrumb,
   HeaderSection,

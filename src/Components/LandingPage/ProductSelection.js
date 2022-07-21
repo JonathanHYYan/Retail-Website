@@ -1,34 +1,8 @@
 import { Category, CatHeader, ProductGallery } from "./ProductStyling";
 import { Demo } from "../../assets/DemoStock";
-import { useEffect, useState } from "react";
 import ProductCard from "../UI/Card";
 
 const ProductSelection = () => {
-  const [popStock, setPopStock] = useState([]);
-  const [dealStock, setDealStock] = useState([]);
-  const [newStock, setNewStock] = useState([]);
-
-  useEffect(() => {
-    if (!Demo.images) return;
-
-    let popArr = [];
-    let dealArr = [];
-    let newArr = [];
-
-    Demo.images.map((image) => {
-      if (image.state === "popular") {
-        return popArr.push(image);
-      } else if (image.state === "best") {
-        return dealArr.push(image);
-      } else if (image.state === "new") {
-        return newArr.push(image);
-      }
-    });
-    
-    setPopStock(popArr);
-    setDealStock(dealArr);
-    setNewStock(newArr);
-  }, [Demo.images]);
 
   const generateCard = (product) => {
     return (
@@ -43,17 +17,11 @@ const ProductSelection = () => {
     );
   };
 
-  const popularStock = popStock.map((item) => {
-    return generateCard(item);
-  });
+  const popularStock = Demo.images.filter(image => image.state === "popular").map(image => generateCard(image));
 
-  const bestDealStock = dealStock.map((item) => {
-    return generateCard(item);
-  });
+  const bestDealStock =  Demo.images.filter(image => image.state === "best").map(image => generateCard(image));
 
-  const newDealStock = newStock.map((item) => {
-    return generateCard(item);
-  });
+  const newDealStock =  Demo.images.filter(image => image.state === "new").map(image => generateCard(image));
 
   return (
     <ProductGallery>
