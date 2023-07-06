@@ -36,15 +36,15 @@ const ProductPage = () => {
   }, [productData, selectedColor]);
 
   const getData = async () => {
-    const promises = vendors.map((vendor) => {
-      const response = fetch(`http://0b69-45-132-108-35.eu.ngrok.io/${vendor}`);
-      return response;
-    });
-    const responses = await Promise.all(promises);
-    const values = await Promise.all(
-      responses.map((response) => response.json())
-    );
-    const products = values.map((object, index) => Object.values(object)[0]);
+    // const promises = vendors.map((vendor) => {
+    //   const response = fetch(`http://0b69-45-132-108-35.eu.ngrok.io/${vendor}`);
+    //   return response;
+    // });
+    // const responses = await Promise.all(promises);
+    // const values = await Promise.all(
+    //   responses.map((response) => response.json())
+    // );
+    const products = [].map((object, index) => Object.values(object)[0]);
 
     setProductData(products);
   };
